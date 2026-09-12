@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Portal | Profile</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h2>Student Portal</h2>
+            <span>College Dashboard</span>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="/student/dashboard" class="nav-item">
+                Dashboard
+            </a>
+
+            <a href="/student/profile" class="nav-item active">
+                Profile
+            </a>
+
+            <a href="/student/subjects" class="nav-item">
+                Subjects
+            </a>
+
+            <a href="/student/attendance" class="nav-item">
+                Attendance
+            </a>
+
+            <a href="/student/assignments" class="nav-item">
+                Assignments
+            </a>
+
+            <a href="/student/marks" class="nav-item">
+                Marks
+            </a>
+
+            <a href="/student/results" class="nav-item">
+                Results
+            </a>
+
+            <a href="/quiz/Student/available-quizzes" class="nav-item">
+                Quiz
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a href="/login" class="nav-item logout">
+                Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- HEADER -->
+        <header class="topbar">
+
+            <div>
+                <p class="page-label">STUDENT PROFILE</p>
+
+                <h1>My Profile</h1>
+
+                <p class="subtitle">
+                    View and update your personal information.
+                </p>
+            </div>
+
+        </header>
+
+
+        <!-- PROFILE CARD -->
+        <section class="profile-card">
+
+            <div class="profile-header">
+
+                <div class="large-avatar" id="profileInitial">
+                    S
+                </div>
+
+                <div>
+                    <h2 id="profileName">Loading...</h2>
+                    <p id="profileUsername">Loading...</p>
+                </div>
+
+            </div>
+
+
+            <!-- PROFILE FORM -->
+            <form id="profileForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label>Full Name</label>
+
+                        <input
+                                type="text"
+                                id="fullName"
+                                name="fullName"
+                                placeholder="Enter full name"
+                                required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Username</label>
+
+                        <input
+                                type="text"
+                                id="username"
+                                name="username"
+                                readonly
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Email</label>
+
+                        <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                readonly
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Phone</label>
+
+                        <input
+                                type="text"
+                                id="phone"
+                                name="phone"
+                                placeholder="Enter phone number"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Roll Number</label>
+
+                        <input
+                                type="text"
+                                id="rollNumber"
+                                name="rollNumber"
+                                readonly
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button type="submit" class="save-button">
+                        Save Changes
+                    </button>
+
+                    <span id="profileMessage"></span>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="/js/student.js"></script>
+
+</body>
+
+</html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +18,6 @@
     <aside class="sidebar">
 
         <div class="logo">
-            <div class="logo-icon">🎓</div>
             <div>
                 <h2>Student Portal</h2>
                 <span>College Dashboard</span>
@@ -27,57 +27,45 @@
         <nav class="sidebar-nav">
 
             <a href="/student/dashboard" class="nav-item active">
-                <span>🏠</span>
                 <span>Dashboard</span>
             </a>
 
             <a href="/student/profile" class="nav-item">
-                <span>👤</span>
                 <span>Profile</span>
             </a>
 
-            <a href="#" class="nav-item">
-                <span>📚</span>
+            <a href="/student/subjects" class="nav-item">
                 <span>Subjects</span>
             </a>
 
-            <a href="#" class="nav-item">
-                <span>📊</span>
+            <a href="/student/attendance" class="nav-item">
                 <span>Attendance</span>
             </a>
 
-            <a href="#" class="nav-item">
-                <span>📝</span>
+            <a href="/student/assignments" class="nav-item">
                 <span>Assignments</span>
             </a>
 
-            <a href="#" class="nav-item">
-                <span>📈</span>
+            <a href="/student/marks" class="nav-item">
                 <span>Marks</span>
             </a>
 
-            <a href="#" class="nav-item">
-                <span>🏆</span>
+            <a href="/student/results" class="nav-item">
                 <span>Results</span>
             </a>
 
-            <a href="/quiz/student/quizzes" class="nav-item">
-                <span>🧠</span>
-                <span>Quizzes</span>
+            <a href="/student/quiz" class="nav-item">
+                <span>Quiz</span>
             </a>
 
         </nav>
 
         <div class="sidebar-bottom">
-            <a href="#" class="nav-item">
-                <span>⚙️</span>
-                <span>Settings</span>
-            </a>
 
             <a href="/login" class="nav-item logout">
-                <span>🚪</span>
                 <span>Logout</span>
             </a>
+
         </div>
 
     </aside>
@@ -86,31 +74,28 @@
     <!-- MAIN CONTENT -->
     <main class="main-content">
 
-        <!-- TOP BAR -->
+        <!-- TOP SECTION -->
         <header class="topbar">
 
             <div>
                 <p class="page-label">STUDENT DASHBOARD</p>
-                <h1>Good Morning, Student! 👋</h1>
+
+                <h1 id="welcomeMessage">Welcome back</h1>
+
                 <p class="subtitle">
-                    Here's what's happening with your academics today.
+                    Here's an overview of your academic activities.
                 </p>
             </div>
 
-            <div class="topbar-right">
+            <div class="student-mini-profile">
 
-                <button class="notification-btn">
-                    🔔
-                    <span class="notification-dot"></span>
-                </button>
+                <div class="profile-avatar" id="profileInitial">
+                    S
+                </div>
 
-                <div class="student-mini-profile">
-                    <div class="profile-avatar">S</div>
-
-                    <div>
-                        <strong>Student</strong>
-                        <span>Computer Engineering</span>
-                    </div>
+                <div>
+                    <strong id="studentName">Loading...</strong>
+                    <span>Student</span>
                 </div>
 
             </div>
@@ -118,64 +103,48 @@
         </header>
 
 
-        <!-- SUMMARY CARDS -->
+        <!-- SUMMARY -->
         <section class="summary-grid">
 
-            <div class="summary-card attendance-card">
-
-                <div class="summary-icon">
-                    📊
-                </div>
+            <div class="summary-card">
 
                 <div class="summary-info">
                     <span>Attendance</span>
-                    <h2>85%</h2>
-                    <small>↑ 5% this month</small>
+                    <h2 id="attendanceValue">--</h2>
+                    <small>Good standing</small>
                 </div>
 
             </div>
 
 
-            <div class="summary-card assignment-card">
+            <div class="summary-card">
 
-                <div class="summary-icon">
-                    📝
+                <div class="summary-info">
+                    <span>Current CGPA</span>
+                    <h2 id="cgpaValue">--</h2>
+                    <small>Excellent</small>
                 </div>
+
+            </div>
+
+
+            <div class="summary-card">
 
                 <div class="summary-info">
                     <span>Assignments</span>
-                    <h2>8</h2>
-                    <small>2 pending</small>
+                    <h2 id="assignmentValue">--</h2>
+                    <small>Pending</small>
                 </div>
 
             </div>
 
 
-            <div class="summary-card marks-card">
-
-                <div class="summary-icon">
-                    📈
-                </div>
+            <div class="summary-card">
 
                 <div class="summary-info">
-                    <span>Average Marks</span>
-                    <h2>82%</h2>
-                    <small>↑ 4% from last test</small>
-                </div>
-
-            </div>
-
-
-            <div class="summary-card quiz-card">
-
-                <div class="summary-icon">
-                    🧠
-                </div>
-
-                <div class="summary-info">
-                    <span>Quizzes</span>
-                    <h2>5</h2>
-                    <small>3 completed</small>
+                    <span>Subjects</span>
+                    <h2 id="subjectValue">--</h2>
+                    <small>Current semester</small>
                 </div>
 
             </div>
@@ -183,19 +152,24 @@
         </section>
 
 
-        <!-- CONTENT GRID -->
+        <!-- MAIN GRID -->
         <section class="content-grid">
 
-            <!-- RECENT ASSIGNMENTS -->
-            <div class="dashboard-card assignments-section">
+
+            <!-- ASSIGNMENTS -->
+            <div class="dashboard-card">
 
                 <div class="card-header">
+
                     <div>
                         <h2>Recent Assignments</h2>
                         <p>Your latest academic tasks</p>
                     </div>
 
-                    <a href="#">View All</a>
+                    <a href="/student/assignments">
+                        View all
+                    </a>
+
                 </div>
 
 
@@ -203,16 +177,16 @@
 
                     <div class="assignment-item">
 
-                        <div class="assignment-icon">
-                            💻
-                        </div>
-
                         <div class="assignment-details">
-                            <h3>Java Programming</h3>
-                            <p>Object-Oriented Programming</p>
+                            <strong>Java Programming</strong>
+                            <p>Object Oriented Programming</p>
                         </div>
 
-                        <span class="status pending">
+                        <span class="assignment-date">
+                            15 Sep
+                        </span>
+
+                        <span class="assignment-status status-pending">
                             Pending
                         </span>
 
@@ -221,17 +195,17 @@
 
                     <div class="assignment-item">
 
-                        <div class="assignment-icon">
-                            🗄️
-                        </div>
-
                         <div class="assignment-details">
-                            <h3>Database Management</h3>
-                            <p>SQL & Database Design</p>
+                            <strong>Database Management</strong>
+                            <p>SQL & PostgreSQL</p>
                         </div>
 
-                        <span class="status submitted">
-                            Submitted
+                        <span class="assignment-date">
+                            18 Sep
+                        </span>
+
+                        <span class="assignment-status status-pending">
+                            Pending
                         </span>
 
                     </div>
@@ -239,145 +213,18 @@
 
                     <div class="assignment-item">
 
-                        <div class="assignment-icon">
-                            🌐
-                        </div>
-
                         <div class="assignment-details">
-                            <h3>Web Development</h3>
-
-                            <div class="assignment-details">
-                                <h3>Web Development</h3>
-                                <p>Frontend Development</p>
-                            </div>
-
-                            <div class="assignment-date">
-                                Due: 10 Sep
-                            </div>
-
-                            <span class="assignment-status status-pending">
-    Pending
-</span>
+                            <strong>Web Development</strong>
+                            <p>HTML & CSS</p>
                         </div>
 
+                        <span class="assignment-date">
+                            20 Sep
+                        </span>
 
-                        <div class="assignment-item">
-
-                            <div class="assignment-icon">
-                                📝
-                            </div>
-
-                            <div class="assignment-details">
-                                <h3>Database Management</h3>
-                                <p>SQL Queries &amp; Database Design</p>
-                            </div>
-
-                            <div class="assignment-date">
-                                Due: 12 Sep
-                            </div>
-
-                            <span class="assignment-status status-pending">
-        Pending
-    </span>
-
-                        </div>
-
-
-                        <div class="assignment-item">
-
-                            <div class="assignment-icon">
-                                📚
-                            </div>
-
-                            <div class="assignment-details">
-                                <h3>Data Structures</h3>
-                                <p>Sorting Algorithms</p>
-                            </div>
-
-                            <div class="assignment-date">
-                                Due: 05 Sep
-                            </div>
-
-                            <span class="assignment-status status-completed">
-        Completed
-    </span>
-
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <!-- ================================
-                     ATTENDANCE CARD
-                ================================ -->
-
-                <div class="dashboard-card">
-
-                    <div class="card-header">
-
-                        <div>
-                            <h2>Attendance</h2>
-                            <p>Your attendance overview</p>
-                        </div>
-
-                        <a href="#">View Details</a>
-
-                    </div>
-
-
-                    <div class="progress-container">
-
-                        <div class="progress-label">
-                            <span>Overall Attendance</span>
-                            <span>85%</span>
-                        </div>
-
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 85%;"></div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="progress-container">
-
-                        <div class="progress-label">
-                            <span>Web Development</span>
-                            <span>90%</span>
-                        </div>
-
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 90%;"></div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="progress-container">
-
-                        <div class="progress-label">
-                            <span>Database Management</span>
-                            <span>82%</span>
-                        </div>
-
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 82%;"></div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="progress-container">
-
-                        <div class="progress-label">
-                            <span>Data Structures</span>
-                            <span>84%</span>
-                        </div>
-
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 84%;"></div>
-                        </div>
+                        <span class="assignment-status status-completed">
+                            Completed
+                        </span>
 
                     </div>
 
@@ -386,135 +233,117 @@
             </div>
 
 
-            <!-- ================================
-                 BOTTOM SECTION
-            ================================ -->
+            <!-- ACADEMIC PROGRESS -->
+            <div class="dashboard-card">
 
-            <div class="bottom-grid">
+                <div class="card-header">
 
-
-                <!-- RECENT MARKS -->
-
-                <div class="dashboard-card">
-
-                    <div class="card-header">
-
-                        <div>
-                            <h2>Recent Marks</h2>
-                            <p>Your latest academic performance</p>
-                        </div>
-
-                        <a href="#">View All</a>
-
-                    </div>
-
-
-                    <div class="assignment-list">
-
-                        <div class="assignment-item">
-
-                            <div class="assignment-icon">
-                                💻
-                            </div>
-
-                            <div class="assignment-details">
-                                <h3>Web Development</h3>
-                                <p>Internal Test 1</p>
-                            </div>
-
-                            <strong>88%</strong>
-
-                        </div>
-
-
-                        <div class="assignment-item">
-
-                            <div class="assignment-icon">
-                                🗄️
-                            </div>
-
-                            <div class="assignment-details">
-                                <h3>Database Management</h3>
-                                <p>Internal Test 1</p>
-                            </div>
-
-                            <strong>82%</strong>
-
-                        </div>
-
-
-                        <div class="assignment-item">
-
-                            <div class="assignment-icon">
-                                📊
-                            </div>
-
-                            <div class="assignment-details">
-                                <h3>Data Structures</h3>
-                                <p>Internal Test 1</p>
-                            </div>
-
-                            <strong>76%</strong>
-
-                        </div>
-
+                    <div>
+                        <h2>Academic Progress</h2>
+                        <p>Your current performance</p>
                     </div>
 
                 </div>
 
 
-                <!-- QUICK LINKS -->
+                <div class="progress-container">
 
-                <div class="dashboard-card">
-
-                    <div class="card-header">
-
-                        <div>
-                            <h2>Quick Links</h2>
-                            <p>Access important pages</p>
-                        </div>
-
+                    <div class="progress-label">
+                        <span>Overall Progress</span>
+                        <span>86%</span>
                     </div>
 
+                    <div class="progress-bar">
+                        <div
+                                class="progress-fill"
+                                style="width: 86%;">
+                        </div>
+                    </div>
 
-                    <div class="quick-links">
+                </div>
 
-                        <a href="#" class="quick-link">
-                            <span>📚 Subjects</span>
-                            <span>→</span>
-                        </a>
 
-                        <a href="#" class="quick-link">
-                            <span>📅 Attendance</span>
-                            <span>→</span>
-                        </a>
+                <div class="progress-container">
 
-                        <a href="#" class="quick-link">
-                            <span>📝 Assignments</span>
-                            <span>→</span>
-                        </a>
+                    <div class="progress-label">
+                        <span>Attendance</span>
+                        <span>85%</span>
+                    </div>
 
-                        <a href="#" class="quick-link">
-                            <span>📊 Results</span>
-                            <span>→</span>
-                        </a>
+                    <div class="progress-bar">
+                        <div
+                                class="progress-fill"
+                                style="width: 85%;">
+                        </div>
+                    </div>
 
-                        <a href="#" class="quick-link">
-                            <span>🧠 Quizzes</span>
-                            <span>→</span>
-                        </a>
+                </div>
 
+
+                <div class="progress-container">
+
+                    <div class="progress-label">
+                        <span>Assignments</span>
+                        <span>72%</span>
+                    </div>
+
+                    <div class="progress-bar">
+                        <div
+                                class="progress-fill"
+                                style="width: 72%;">
+                        </div>
                     </div>
 
                 </div>
 
             </div>
 
-    </section>
+        </section>
+
+
+        <!-- QUICK LINKS -->
+        <section class="dashboard-card">
+
+            <div class="card-header">
+
+                <div>
+                    <h2>Quick Access</h2>
+                    <p>Frequently used sections</p>
+                </div>
+
+            </div>
+
+
+            <div class="quick-links">
+
+                <a href="/student/profile" class="quick-link">
+                    <span>View Profile</span>
+                    <span>→</span>
+                </a>
+
+                <a href="/student/attendance" class="quick-link">
+                    <span>Check Attendance</span>
+                    <span>→</span>
+                </a>
+
+                <a href="/student/marks" class="quick-link">
+                    <span>View Marks</span>
+                    <span>→</span>
+                </a>
+
+                <a href="/student/results" class="quick-link">
+                    <span>View Results</span>
+                    <span>→</span>
+                </a>
+
+            </div>
+
+        </section>
+
     </main>
 
 </div>
-
+<script src="/js/student.js"></script>
 
 </body>
 

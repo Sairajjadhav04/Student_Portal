@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Portal | Subjects</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h2>Student Portal</h2>
+            <span>College Dashboard</span>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="/student/dashboard" class="nav-item">
+                Dashboard
+            </a>
+
+            <a href="/student/profile" class="nav-item">
+                Profile
+            </a>
+
+            <a href="/student/subjects" class="nav-item active">
+                Subjects
+            </a>
+
+            <a href="/student/attendance" class="nav-item">
+                Attendance
+            </a>
+
+            <a href="/student/assignments" class="nav-item">
+                Assignments
+            </a>
+
+            <a href="/student/marks" class="nav-item">
+                Marks
+            </a>
+
+            <a href="/student/results" class="nav-item">
+                Results
+            </a>
+
+            <a href="/quiz/Student/available-quizzes" class="nav-item">
+                Quiz
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a href="/login" class="nav-item logout">
+                Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <p class="page-label">ACADEMIC</p>
+
+                <h1>My Subjects</h1>
+
+                <p class="subtitle">
+                    Subjects assigned to your current course.
+                </p>
+            </div>
+
+        </header>
+
+
+        <!-- SUBJECT SUMMARY -->
+        <section class="summary-grid">
+
+            <div class="summary-card">
+
+                <div class="summary-info">
+
+                    <span>Total Subjects</span>
+
+                    <h2 id="subjectCount">--</h2>
+
+                    <small>Current course</small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SUBJECTS -->
+        <section class="dashboard-card">
+
+            <div class="card-header">
+
+                <div>
+                    <h2>Subject List</h2>
+
+                    <p>
+                        Your currently assigned subjects
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="subjects-table-container">
+
+                <table class="subjects-table">
+
+                    <thead>
+
+                    <tr>
+                        <th>Code</th>
+                        <th>Subject</th>
+                        <th>Credits</th>
+                        <th>Faculty</th>
+                    </tr>
+
+                    </thead>
+
+                    <tbody id="subjectsTableBody">
+
+                    <tr>
+                        <td colspan="4">
+                            Loading subjects...
+                        </td>
+                    </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="/js/student.js"></script>
+
+</body>
+
+</html>

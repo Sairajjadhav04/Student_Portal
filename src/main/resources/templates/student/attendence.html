@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Portal | Attendance</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h2>Student Portal</h2>
+            <span>College Dashboard</span>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="/student/dashboard" class="nav-item">
+                Dashboard
+            </a>
+
+            <a href="/student/profile" class="nav-item">
+                Profile
+            </a>
+
+            <a href="/student/subjects" class="nav-item">
+                Subjects
+            </a>
+
+            <a href="/student/attendance" class="nav-item active">
+                Attendance
+            </a>
+
+            <a href="/student/assignments" class="nav-item">
+                Assignments
+            </a>
+
+            <a href="/student/marks" class="nav-item">
+                Marks
+            </a>
+
+            <a href="/student/results" class="nav-item">
+                Results
+            </a>
+
+            <a href="/quiz/Student/available-quizzes" class="nav-item">
+                Quiz
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <a href="/login" class="nav-item logout">
+                Logout
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <p class="page-label">ACADEMIC</p>
+
+                <h1>Attendance</h1>
+
+                <p class="subtitle">
+                    Track your attendance for each subject.
+                </p>
+            </div>
+
+        </header>
+
+
+        <!-- OVERALL ATTENDANCE -->
+
+        <section class="summary-grid">
+
+            <div class="summary-card">
+
+                <div class="summary-info">
+
+                    <span>Overall Attendance</span>
+
+                    <h2 id="overallAttendance">--</h2>
+
+                    <small id="attendanceStatus">
+                        Calculating...
+                    </small>
+
+                </div>
+
+            </div>
+
+            <div class="summary-card">
+
+                <div class="summary-info">
+
+                    <span>Total Classes</span>
+
+                    <h2 id="totalClasses">--</h2>
+
+                    <small>Recorded classes</small>
+
+                </div>
+
+            </div>
+
+            <div class="summary-card">
+
+                <div class="summary-info">
+
+                    <span>Present</span>
+
+                    <h2 id="presentClasses">--</h2>
+
+                    <small>Classes attended</small>
+
+                </div>
+
+            </div>
+
+            <div class="summary-card">
+
+                <div class="summary-info">
+
+                    <span>Absent</span>
+
+                    <h2 id="absentClasses">--</h2>
+
+                    <small>Classes missed</small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SUBJECT ATTENDANCE -->
+
+        <section class="dashboard-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>Subject-wise Attendance</h2>
+
+                    <p>
+                        Attendance breakdown by subject
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="subjects-table-container">
+
+                <table class="subjects-table">
+
+                    <thead>
+
+                    <tr>
+                        <th>Subject</th>
+                        <th>Code</th>
+                        <th>Total Classes</th>
+                        <th>Present</th>
+                        <th>Absent</th>
+                        <th>Attendance</th>
+                    </tr>
+
+                    </thead>
+
+                    <tbody id="attendanceTableBody">
+
+                    <tr>
+                        <td colspan="6">
+                            Loading attendance...
+                        </td>
+                    </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="/js/student.js"></script>
+
+</body>
+
+</html>
