@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Portal | Assignments</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h2>Student Portal</h2>
+            <span>College Dashboard</span>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="/student/dashboard" class="nav-item">
+                Dashboard
+            </a>
+
+            <a href="/student/profile" class="nav-item">
+                Profile
+            </a>
+
+            <a href="/student/subjects" class="nav-item">
+                Subjects
+            </a>
+
+            <a href="/student/attendance" class="nav-item">
+                Attendance
+            </a>
+
+            <a href="/student/assignments" class="nav-item active">
+                Assignments
+            </a>
+
+            <a href="/student/marks" class="nav-item">
+                Marks
+            </a>
+
+            <a href="/student/results" class="nav-item">
+                Results
+            </a>
+
+            <a href="/quiz/Student/available-quizzes" class="nav-item">
+                Quiz
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="/login" class="nav-item logout">
+                Logout
+            </a>
+        </div>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Header -->
+        <header class="topbar">
+
+            <div>
+                <p class="page-label">ACADEMIC</p>
+
+                <h1>Assignments</h1>
+
+                <p class="subtitle">
+                    View your current assignments and upcoming deadlines.
+                </p>
+            </div>
+
+        </header>
+
+
+        <!-- Summary -->
+        <section class="summary-grid">
+
+            <div class="summary-card">
+                <div class="summary-info">
+                    <span>Total Assignments</span>
+                    <h2 id="totalAssignments">--</h2>
+                    <small>All assignments</small>
+                </div>
+            </div>
+
+
+            <div class="summary-card">
+                <div class="summary-info">
+                    <span>Pending</span>
+                    <h2 id="pendingAssignments">--</h2>
+                    <small>Upcoming work</small>
+                </div>
+            </div>
+
+
+            <div class="summary-card">
+                <div class="summary-info">
+                    <span>Due Soon</span>
+                    <h2 id="dueSoonAssignments">--</h2>
+                    <small>Within 7 days</small>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- Assignment List -->
+        <section class="dashboard-card">
+
+            <div class="card-header">
+
+                <div>
+                    <h2>Assignment List</h2>
+
+                    <p>
+                        Your assignments from the college
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table class="data-table">
+
+                    <thead>
+
+                    <tr>
+                        <th>Title</th>
+                        <th>Subject</th>
+                        <th>Description</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
+                    </tr>
+
+                    </thead>
+
+
+                    <tbody id="assignmentTableBody">
+
+                    <tr>
+                        <td colspan="5">
+                            Loading assignments...
+                        </td>
+                    </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="/js/assignments.js"></script>
+
+</body>
+</html>

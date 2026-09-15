@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Portal | Results</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h2>Student Portal</h2>
+            <span>College Dashboard</span>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="/student/dashboard" class="nav-item">
+                Dashboard
+            </a>
+
+            <a href="/student/profile" class="nav-item">
+                Profile
+            </a>
+
+            <a href="/student/subjects" class="nav-item">
+                Subjects
+            </a>
+
+            <a href="/student/attendance" class="nav-item">
+                Attendance
+            </a>
+
+            <a href="/student/assignments" class="nav-item">
+                Assignments
+            </a>
+
+            <a href="/student/marks" class="nav-item">
+                Marks
+            </a>
+
+            <a href="/student/results" class="nav-item active">
+                Results
+            </a>
+
+            <a href="/quiz/Student/available-quizzes" class="nav-item">
+                Quiz
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="/login" class="nav-item logout">
+                Logout
+            </a>
+        </div>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <p class="page-label">ACADEMIC</p>
+
+                <h1>Results</h1>
+
+                <p class="subtitle">
+                    View your semester results and academic performance.
+                </p>
+            </div>
+
+        </header>
+
+
+        <!-- Summary -->
+        <section class="summary-grid">
+
+            <div class="summary-card">
+                <div class="summary-info">
+                    <span>Semesters</span>
+                    <h2 id="totalSemesters">--</h2>
+                    <small>Results available</small>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <div class="summary-info">
+                    <span>Latest SGPA</span>
+                    <h2 id="latestSgpa">--</h2>
+                    <small>Latest semester</small>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <div class="summary-info">
+                    <span>Best SGPA</span>
+                    <h2 id="bestSgpa">--</h2>
+                    <small>Highest SGPA</small>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <div class="summary-info">
+                    <span>Status</span>
+                    <h2 id="overallStatus">--</h2>
+                    <small>Latest result</small>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- Results Table -->
+        <section class="dashboard-card">
+
+            <div class="card-header">
+
+                <div>
+                    <h2>Semester Results</h2>
+
+                    <p>
+                        Your semester-wise academic results
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table class="data-table">
+
+                    <thead>
+                    <tr>
+                        <th>Semester</th>
+                        <th>SGPA</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+
+                    <tbody id="resultsTableBody">
+
+                    <tr>
+                        <td colspan="3">
+                            Loading results...
+                        </td>
+                    </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="/js/results.js"></script>
+
+</body>
+</html>

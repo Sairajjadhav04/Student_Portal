@@ -5,4 +5,5 @@ import java.util.List;
 public interface AssignmentRepository extends JpaRepository<Assignment, Long> {
     List<Assignment> findBySubjectId(Long subjectId);
     List<Assignment> findByFacultyId(Long facultyId);
+    List<Assignment> findBySubjectCourseId(Long courseId);
 }

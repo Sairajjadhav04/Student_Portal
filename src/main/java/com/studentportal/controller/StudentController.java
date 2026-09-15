@@ -26,8 +26,13 @@ public class StudentController {
     public Student updateProfile(Authentication auth, @RequestBody Student student) {
         return service.updateProfile(auth.getName(), student);
     }
+    @GetMapping("/assignments")
+    public Object assignments(Authentication auth) {
+        return service.getAssignments(auth.getName());
+    }
     @GetMapping("/all")
     public Object allStudents() {
         return service.getAll();
     }
 }
+
