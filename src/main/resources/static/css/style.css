@@ -364,7 +364,7 @@ a {
 }
 
 .card-header p {
-    font-size: 12px;
+    font-size: 15px;
 
     color: #9ca3af;
 }
@@ -413,9 +413,9 @@ a {
 .assignment-details strong {
     display: block;
 
-    font-size: 13px;
+    font-size: 15px;
 
-    color: #374151;
+    color: #33304d;
 
     margin-bottom: 3px;
 }
@@ -476,17 +476,17 @@ a {
 
     align-items: center;
 
-    font-size: 12px;
+    font-size: 15px;
 
     margin-bottom: 7px;
 }
 
 .progress-label span:first-child {
-    color: #6b7280;
+    color: #3e3b5c;
 }
 
 .progress-label span:last-child {
-    color: #111827;
+    color: #3e3b5c;
 
     font-weight: 600;
 }
