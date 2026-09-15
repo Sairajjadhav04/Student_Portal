@@ -7,10 +7,11 @@ public class Marks {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id ;
     @ManyToOne(optional = false)
+    @JoinColumn(name = "student_id")
     private Student student;
     @ManyToOne(optional = false)
+    @JoinColumn(name = "subject_id")
     private Subject subject;
-
     private String examType;
     private double obtainedMarks;
     private double totalMarks;

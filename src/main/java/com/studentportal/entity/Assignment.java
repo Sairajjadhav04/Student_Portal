@@ -1,5 +1,5 @@
 package com.studentportal.entity;
-import jakarta.persistence.*;
+import  jakarta.persistence.*;
 import java.time.LocalDate;
 @Entity
 public class Assignment {
@@ -11,9 +11,13 @@ public class Assignment {
     private String description;
     private LocalDate dueDate;
     @ManyToOne
+    @JoinColumn(name = "subject_id")
     private Subject subject;
     @ManyToOne
+    @JoinColumn(name= "faculty_id")
     private Faculty faculty;
+    private LocalDate CreatedAt;
+
     public Long getId() { return id; }
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
@@ -25,4 +29,10 @@ public class Assignment {
     public void setSubject(Subject subject) { this.subject = subject; }
     public Faculty getFaculty() { return faculty; }
     public void setFaculty(Faculty faculty) { this.faculty = faculty; }
+    public LocalDate getCreatedAt() {
+        return CreatedAt;
+    }
+    public void setCreatedAt(LocalDate createdAt) {
+        CreatedAt = createdAt;
+    }
 }
