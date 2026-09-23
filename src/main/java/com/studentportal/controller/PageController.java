@@ -35,4 +35,8 @@ public class PageController {
     public String assignments() {
         return "student/assignments";
     }
+    @GetMapping("/student/quiz")
+    public String quiz() {
+        return "student/quiz";
+    }
 }

@@ -1,4 +1,9 @@
 /* =========================================
+   STUDENT PORTAL - SOFT SKY BLUE THEME
+   Layout and responsive structure preserved
+========================================= */
+
+/* =========================================
    RESET
 ========================================= */
 
@@ -13,9 +18,9 @@ html {
 }
 
 body {
-    font-family: 'Times New Roman',Times,serif;
-    background: #eef6f8;
-    color: #1f2937;
+    font-family: "Times New Roman", Times, serif;
+    background: #F2FEFE;
+    color: #000000;
     line-height: 1.5;
 }
 
@@ -47,8 +52,9 @@ a {
     left: 0;
     top: 0;
 
-    background: #102a43;
-    border-right: 1px solid #d9e5eb;
+    /* Deeper cyan derived from the very light body */
+    background: #155E63;
+    border-right: 1px solid #9EDADD;
 
     padding: 28px 16px;
 
@@ -68,16 +74,15 @@ a {
 .logo h2 {
     font-size: 21px;
     font-weight: 700;
-    color: #ffffff;
+    color: #FFFFFF;
     letter-spacing: -0.3px;
 }
 
 .logo span {
     display: block;
     margin-top: 4px;
-
     font-size: 12px;
-    color: #b8b8b8;
+    color: #B8D1DC;
 }
 
 
@@ -91,36 +96,23 @@ a {
 
 .nav-item {
     display: block;
-
     padding: 11px 14px;
-
     border-radius: 7px;
-
-    color: #d1d5db;
-
+    color: #FFFFFF;
     font-size: 14px;
     font-weight: 500;
-
     transition: all 0.2s ease;
 }
 
 .nav-item:hover {
-    background: #1f1f1f;
-    color: #ffffff;
-}
-
-.nav-item.active {
-    background: #ffffff;
+    background: #DDF8F8;
     color: #000000;
 }
-.nav-item:hover {
-    background: #e5f1f5;
-    color: #2878a8;
-}
 
 .nav-item.active {
-    background: #2878a8;
-    color: #ffffff;
+    background: #35BFC5;
+    color: #FFFFFF;
+    box-shadow: 0 3px 10px rgba(0, 90, 95, 0.18);
 }
 
 
@@ -128,15 +120,13 @@ a {
 
 .sidebar-bottom {
     margin-top: auto;
-
     padding-top: 15px;
-
-    border-top: 1px solid #e5e7eb;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .logout:hover {
-    background: #fef2f2;
-    color: #dc2626;
+    background: rgba(217, 83, 79, 0.15);
+    color: #FFB4B1;
 }
 
 
@@ -146,12 +136,19 @@ a {
 
 .main-content {
     margin-left: 240px;
-
     width: calc(100% - 240px);
-
     padding: 35px 40px;
-
     max-width: 1600px;
+
+    /* Very light cyan body surface */
+    background: linear-gradient(
+            135deg,
+            #E9FCFC 0%,
+            #DDF8F9 50%,
+            #F7FFFF 100%
+    );
+
+    min-height: 100vh;
 }
 
 
@@ -171,7 +168,7 @@ a {
     font-size: 14px;
     font-weight: 700;
 
-    color: #2878a8;
+    color: #287FAE;
 
     letter-spacing: 1.2px;
 
@@ -182,7 +179,7 @@ a {
     font-size: 30px;
     font-weight: 700;
 
-    color: #111827;
+    color: #000000;
 
     margin-bottom: 5px;
 
@@ -191,7 +188,7 @@ a {
 
 .subtitle {
     font-size: 16px;
-    color: #76707d;
+    color: #000000;
 }
 
 
@@ -209,14 +206,16 @@ a {
 
     border-radius: 50%;
 
-    background: #eff6ff;
-    color: #2563eb;
+    background: #E0F3F8;
+    color: #287FAE;
+
+    border: 1px solid #C5E2EB;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 700;
 }
 
@@ -224,14 +223,14 @@ a {
     display: block;
 
     font-size: 14px;
-    color: #111827;
+    color: #000000;
 }
 
 .student-mini-profile span {
     display: block;
 
     font-size: 11px;
-    color: #9ca3af;
+    color: #000000;
 
     margin-top: 2px;
 }
@@ -252,9 +251,9 @@ a {
 }
 
 .summary-card {
-    background: #ffffff;
+    background: #FFFFFF;
 
-    border: 1px solid #e5e7eb;
+    border: 1px solid #C7EDEE;
 
     border-radius: 12px;
 
@@ -266,14 +265,34 @@ a {
     align-items: center;
 
     transition: all 0.2s ease;
+
+    box-shadow: 0 4px 15px rgba(23, 59, 94, 0.05);
+
+    border-top: 4px solid #35BFC5;
 }
 
 .summary-card:hover {
     transform: translateY(-2px);
 
-    border-color: #dbe3ef;
+    border-color: #C2DDE6;
 
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8px 20px rgba(23, 59, 94, 0.08);
+}
+
+.summary-card:nth-child(1) {
+    border-top-color: #35BFC5;
+}
+
+.summary-card:nth-child(2) {
+    border-top-color: #5B8DB8;
+}
+
+.summary-card:nth-child(3) {
+    border-top-color: #3A9D75;
+}
+
+.summary-card:nth-child(4) {
+    border-top-color: #D64545;
 }
 
 .summary-info span {
@@ -281,8 +300,8 @@ a {
 
     font-size: 15px;
 
-    color: #4b5563;
-    font-weight:600;
+    color: #000000;
+    font-weight: 600;
 
     margin-bottom: 6px;
 }
@@ -290,7 +309,7 @@ a {
 .summary-info h2 {
     font-size: 30px;
 
-    color: #111827;
+    color: #000000;
 
     font-weight: 700;
 
@@ -300,8 +319,8 @@ a {
 .summary-info small {
     font-size: 14px;
 
-    color: #16a34a;
-    font-weight:500;
+    color: #3A9D75;
+    font-weight: 500;
 }
 
 
@@ -325,19 +344,21 @@ a {
 ========================================= */
 
 .dashboard-card {
-    background: #ffffff;
+    background: #FFFFFF;
 
-    border: 1px solid #e5e7eb;
+    border: 1px solid #C7EDEE;
 
     border-radius: 12px;
 
     padding: 22px;
 
     transition: box-shadow 0.2s ease;
+
+    box-shadow: 0 4px 15px rgba(23, 59, 94, 0.04);
 }
 
 .dashboard-card:hover {
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 6px 18px rgba(23, 59, 94, 0.07);
 }
 
 
@@ -356,7 +377,7 @@ a {
 .card-header h2 {
     font-size: 17px;
 
-    color: #111827;
+    color: #000000;
 
     font-weight: 700;
 
@@ -366,7 +387,7 @@ a {
 .card-header p {
     font-size: 15px;
 
-    color: #9ca3af;
+    color: #000000;
 }
 
 .card-header a {
@@ -374,7 +395,7 @@ a {
 
     font-weight: 600;
 
-    color: #2563eb;
+    color: #287FAE;
 }
 
 .card-header a:hover {
@@ -402,7 +423,7 @@ a {
 
     padding: 15px 0;
 
-    border-bottom: 1px solid #f0f1f3;
+    border-bottom: 1px solid #E1F3F3;
 }
 
 .assignment-item:last-child {
@@ -415,7 +436,7 @@ a {
 
     font-size: 15px;
 
-    color: #33304d;
+    color: #314D61;
 
     margin-bottom: 3px;
 }
@@ -423,13 +444,13 @@ a {
 .assignment-details p {
     font-size: 11px;
 
-    color: #9ca3af;
+    color: #000000;
 }
 
 .assignment-date {
     font-size: 11px;
 
-    color: #6b7280;
+    color: #000000;
 
     white-space: nowrap;
 }
@@ -447,13 +468,13 @@ a {
 }
 
 .status-pending {
-    background: #fff7ed;
-    color: #c2410c;
+    background: #FFF7ED;
+    color: #C2410C;
 }
 
 .status-completed {
-    background: #f0fdf4;
-    color: #15803d;
+    background: #F0FDF4;
+    color: #15803D;
 }
 
 
@@ -482,11 +503,11 @@ a {
 }
 
 .progress-label span:first-child {
-    color: #3e3b5c;
+    color: #000000;
 }
 
 .progress-label span:last-child {
-    color: #3e3b5c;
+    color: #000000;
 
     font-weight: 600;
 }
@@ -494,9 +515,9 @@ a {
 .progress-bar {
     width: 100%;
 
-    height: 7px;
+    height: 8px;
 
-    background: #edf0f4;
+    background: #DDECF1;
 
     border-radius: 20px;
 
@@ -506,7 +527,11 @@ a {
 .progress-fill {
     height: 100%;
 
-    background: #3a9d75;
+    background: linear-gradient(
+            90deg,
+            #35BFC5,
+            #48D1D9
+    );
 
     border-radius: 20px;
 
@@ -535,11 +560,13 @@ a {
 
     padding: 13px 15px;
 
-    border: 1px solid #e5e7eb;
+    border: 1px solid #C7EDEE;
 
     border-radius: 8px;
 
-    color: #374151;
+    background: #FFFFFF;
+
+    color: #000000;
 
     font-size: 12px;
 
@@ -547,21 +574,21 @@ a {
 }
 
 .quick-link span:last-child {
-    color: #9ca3af;
+    color: #000000;
 
     font-size: 15px;
 }
 
 .quick-link:hover {
-    border-color: #bfdbfe;
+    border-color: #9CCFE5;
 
-    background: #f8fbff;
+    background: #F5FBFD;
 
-    color: #2563eb;
+    color: #287FAE;
 }
 
 .quick-link:hover span:last-child {
-    color: #2563eb;
+    color: #287FAE;
 }
 
 
@@ -614,7 +641,7 @@ a {
         font-size: 34px;
         font-weight: 700;
 
-        color: #16324F;
+        color: #000000;
 
         margin-bottom: 5px;
 
@@ -720,16 +747,24 @@ a {
     }
 
 }
+
+
 /* =========================================
    PROFILE PAGE
 ========================================= */
 
 .profile-card {
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
+    background: #FFFFFF;
+
+    border: 1px solid #C7EDEE;
+
     border-radius: 12px;
+
     padding: 30px;
+
     max-width: 1000px;
+
+    box-shadow: 0 4px 15px rgba(23, 59, 94, 0.05);
 }
 
 .profile-header {
@@ -740,7 +775,7 @@ a {
     padding-bottom: 25px;
     margin-bottom: 25px;
 
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid #C7EDEE;
 }
 
 .large-avatar {
@@ -749,8 +784,10 @@ a {
 
     border-radius: 50%;
 
-    background: #eff6ff;
-    color: #2563eb;
+    background: #E0F3F8;
+    color: #287FAE;
+
+    border: 1px solid #C5E2EB;
 
     display: flex;
     align-items: center;
@@ -762,13 +799,13 @@ a {
 
 .profile-header h2 {
     font-size: 22px;
-    color: #111827;
+    color: #000000;
     margin-bottom: 4px;
 }
 
 .profile-header p {
     font-size: 13px;
-    color: #9ca3af;
+    color: #000000;
 }
 
 .form-grid {
@@ -786,14 +823,14 @@ a {
 .form-group label {
     font-size: 12px;
     font-weight: 600;
-    color: #374151;
+    color: #000000;
 }
 
 .form-group input {
     width: 100%;
     padding: 11px 13px;
 
-    border: 1px solid #d1d5db;
+    border: 1px solid #C8DDE5;
     border-radius: 7px;
 
     font-family: inherit;
@@ -801,16 +838,23 @@ a {
 
     outline: none;
 
-    transition: border-color 0.2s ease;
+    background: #F8FBFC;
+    color: #000000;
+
+    transition: all 0.2s ease;
 }
 
 .form-group input:focus {
-    border-color: #2563eb;
+    border-color: #35BFC5;
+
+    background: #FFFFFF;
+
+    box-shadow: 0 0 0 3px rgba(59, 158, 216, 0.12);
 }
 
 .form-group input:read-only {
-    background: #f9fafb;
-    color: #6b7280;
+    background: #F1F6F8;
+    color: #000000;
 }
 
 .form-actions {
@@ -824,8 +868,8 @@ a {
 .save-button {
     border: none;
 
-    background: #2563eb;
-    color: #ffffff;
+    background: #35BFC5;
+    color: #FFFFFF;
 
     padding: 11px 20px;
 
@@ -837,11 +881,15 @@ a {
 
     cursor: pointer;
 
-    transition: background 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 .save-button:hover {
-    background: #1d4ed8;
+    background: #287FAE;
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 5px 12px rgba(59, 158, 216, 0.25);
 }
 
 #profileMessage {
@@ -859,6 +907,8 @@ a {
     }
 
 }
+
+
 /* =========================================
    SUBJECTS PAGE
 ========================================= */
@@ -878,14 +928,14 @@ a {
 
     padding: 13px 12px;
 
-    background: #f9fafb;
+    background: #F3FAFC;
 
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid #C7EDEE;
 
     font-size: 11px;
     font-weight: 700;
 
-    color: #6b7280;
+    color: #627B8B;
 
     text-transform: uppercase;
 }
@@ -893,11 +943,11 @@ a {
 .subjects-table td {
     padding: 16px 12px;
 
-    border-bottom: 1px solid #f0f1f3;
+    border-bottom: 1px solid #E1F3F3;
 
     font-size: 13px;
 
-    color: #374151;
+    color: #000000;
 }
 
 .subjects-table tbody tr:last-child td {
@@ -905,23 +955,234 @@ a {
 }
 
 .subjects-table tbody tr:hover {
-    background: #f9fafb;
+    background: #F7FCFD;
 }
 
 .subject-code {
     font-weight: 600;
-    color: #2563eb;
+    color: #287FAE;
 }
 
 .subject-name {
     font-weight: 600;
-    color: #111827;
+    color: #000000;
 }
 
 .subject-credits {
-    color: #6b7280;
+    color: #000000;
 }
 
 .subject-faculty {
-    color: #6b7280;
+    color: #000000;
+}
+
+
+/* =========================================
+   LOGIN PAGE
+========================================= */
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 40px;
+
+    background: #FFFFFF;
+
+    border: 1px solid #C7EDEE;
+
+    border-radius: 16px;
+
+    box-shadow: 0 15px 40px rgba(23, 59, 94, 0.20);
+
+    box-sizing: border-box;
+}
+
+
+/* Full page background */
+
+body:has(.login-container) {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(
+            135deg,
+            #155E63 0%,
+            #35BFC5 50%,
+            #D9FFFF 100%
+    );
+}
+
+
+/* Main heading */
+
+.login-container h1 {
+    text-align: center;
+
+    margin: 0;
+
+    color: #000000;
+
+    font-size: 30px;
+    font-weight: 700;
+}
+
+
+/* Login heading */
+
+.login-container h2 {
+    text-align: center;
+
+    margin-top: 8px;
+    margin-bottom: 30px;
+
+    color: #000000;
+
+    font-size: 18px;
+    font-weight: 500;
+}
+
+
+/* Labels */
+
+.login-container label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #000000;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* Input fields */
+
+.login-container input {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    margin-bottom: 20px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #C8DDE5;
+
+    border-radius: 8px;
+
+    background: #F8FBFC;
+
+    color: #000000;
+
+    font-family: "Times New Roman", Times, serif;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: all 0.25s ease;
+}
+
+
+/* Input focus */
+
+.login-container input:focus {
+    border-color: #35BFC5;
+
+    background: #FFFFFF;
+
+    box-shadow: 0 0 0 3px rgba(59, 158, 216, 0.12);
+}
+
+
+/* Placeholder */
+
+.login-container input::placeholder {
+    color: #8AA0AD;
+}
+
+
+/* Login button */
+
+.login-container button {
+    width: 100%;
+
+    padding: 13px;
+
+    margin-top: 5px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: linear-gradient(
+            135deg,
+            #35BFC5,
+            #287FAE
+    );
+
+    color: #FFFFFF;
+
+    font-family: "Times New Roman", Times, serif;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+
+/* Button hover */
+
+.login-container button:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 20px rgba(59, 158, 216, 0.30);
+}
+
+
+/* Button click */
+
+.login-container button:active {
+    transform: translateY(0);
+}
+
+
+/* Login message */
+
+#message {
+    margin-top: 18px;
+
+    text-align: center;
+
+    font-size: 14px;
+
+    color: #D64545;
+}
+
+
+/* Mobile responsive */
+
+@media (max-width: 500px) {
+
+    .login-container {
+        width: calc(100% - 30px);
+
+        padding: 30px 22px;
+    }
+
+    .login-container h1 {
+        font-size: 26px;
+    }
+
+    .login-container h2 {
+        font-size: 17px;
+    }
 }

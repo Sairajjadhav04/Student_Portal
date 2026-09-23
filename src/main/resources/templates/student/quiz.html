@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  ```
+  <title>Student Portal | Quiz</title>
+
+  <link rel="stylesheet" href="/css/quiz.css">
+  ```
+
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+  ```
+  <!-- Header -->
+  <div class="quiz-header">
+    <h1>Quiz</h1>
+    <p>Test your knowledge and check your performance.</p>
+  </div>
+
+  <!-- Available Quizzes -->
+  <section id="available-section">
+
+    <h2>Available Quizzes</h2>
+
+    <div id="quiz-list">
+      <!-- Quizzes will be loaded here using quiz.js -->
+      <p id="loading-message">Loading quizzes...</p>
+    </div>
+
+  </section>
+
+
+  <!-- Quiz Attempt Section -->
+  <section id="attempt-section" style="display: none;">
+
+    <div class="attempt-header">
+
+      <div>
+        <h2 id="quiz-title"></h2>
+        <p id="quiz-description"></p>
+      </div>
+
+      <div class="quiz-timer">
+        <span>Time Left:</span>
+        <strong id="timer">--:--</strong>
+      </div>
+
+    </div>
+
+
+    <!-- Questions -->
+    <div id="questions-container">
+      <!-- Questions will be added here using JavaScript -->
+    </div>
+
+
+    <button id="submit-quiz-btn" type="button">
+      Submit Quiz
+    </button>
+
+  </section>
+
+
+  <!-- Result Section -->
+  <section id="result-section" style="display: none;">
+
+    <div class="result-card">
+
+      <h2>Quiz Completed</h2>
+
+      <p>Your Score</p>
+
+      <div id="score">
+        0
+      </div>
+
+      <p id="result-message"></p>
+
+      <button id="back-to-quizzes-btn" type="button">
+        Back to Quizzes
+      </button>
+
+    </div>
+
+  </section>
+  ```
+
+</div>
+
+<script src="/js/quiz.js"></script>
+
+</body>
+</html>
