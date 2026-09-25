@@ -13,7 +13,9 @@ public class Subject {
     @ManyToOne
     private Course course;
     @ManyToOne
+    @JoinColumn(name = "faculty_id")
     private Faculty faculty;
+    private String SubjectId;
     public Long getId()
     {
         return id;
@@ -57,5 +59,12 @@ public class Subject {
     public void setFaculty(Faculty faculty)
     {
         this.faculty = faculty;
+    }
+
+    public String getSubjectId() {
+        return SubjectId;
+    }
+    public void setSubjectId(String SubjectId) {
+        this.SubjectId = SubjectId;
     }
 }

@@ -1,72 +1,138 @@
 package com.studentportal.controller;
+
 import com.studentportal.dto.QuizDTO;
-import com.studentportal.entity.*;
+import com.studentportal.entity.Quiz;
+import com.studentportal.entity.QuizAttempt;
 import com.studentportal.service.QuizService;
+
 import jakarta.validation.Valid;
+
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.security.access.prepost.PreAuthorize;
+
+import java.util.List;
 import java.util.Map;
+
 @RestController
 @RequestMapping("/api/quiz")
 public class QuizController {
-    private final QuizService service;
-    public QuizController(QuizService service) {
-        this.service = service;
+
+    private final QuizService quizService;
+
+    public QuizController(QuizService quizService) {
+        this.quizService = quizService;
     }
-    // STUDENT
+
     @PreAuthorize("hasRole('STUDENT')")
     @GetMapping("/student/available")
-    public Object available() {
-        return service.publishedQuizzes();
+    public List<Quiz> getAvailableQuizzes() {
+        return quizService.publishedQuizzes();
     }
+
+    @PreAuthorize("hasRole('STUDENT')")
+    @GetMapping("/{quizId}")
+    public Quiz getQuiz(@PathVariable Long quizId) {
+        return quizService.getQuiz(quizId);
+    }
+
     @PreAuthorize("hasRole('STUDENT')")
     @PostMapping("/student/{quizId}/start")
-    public QuizAttempt start(@PathVariable Long quizId, Authentication auth) {
-        return service.startAttempt(quizId, auth.getName());
+    public QuizAttempt startQuiz(
+            @PathVariable Long quizId,
+            Authentication authentication) {
+
+        return quizService.startAttempt(
+                quizId,
+                authentication.getName()
+        );
     }
+
     @PreAuthorize("hasRole('STUDENT')")
     @PostMapping("/student/attempt/{attemptId}/submit")
-    public QuizAttempt submit(@PathVariable Long attemptId,
-                              Authentication auth,
-                              @RequestBody Map<Long, Long> answers) {
-        return service.submit(attemptId, auth.getName(), answers);
+    public QuizAttempt submitQuiz(
+            @PathVariable Long attemptId,
+            @RequestBody Map<Long, Long> answers,
+            Authentication authentication) {
+
+        return quizService.submit(
+                attemptId,
+                authentication.getName(),
+                answers
+        );
     }
+
     @PreAuthorize("hasRole('STUDENT')")
     @GetMapping("/student/my-attempts")
-    public Object myAttempts(Authentication auth) {
-        return service.myAttempts(auth.getName());
+    public List<QuizAttempt> getMyAttempts(
+            Authentication authentication) {
+
+        return quizService.myAttempts(
+                authentication.getName()
+        );
     }
-    // FACULTY
+
     @PreAuthorize("hasRole('FACULTY')")
     @PostMapping("/faculty/create")
-    public Quiz create(@Valid @RequestBody QuizDTO dto, Authentication auth) {
-        return service.createQuiz(auth.getName(), dto);
+    public Quiz createQuiz(
+            @Valid @RequestBody QuizDTO quizDTO,
+            Authentication authentication) {
+
+        return quizService.createQuiz(
+                authentication.getName(),
+                quizDTO
+        );
     }
+
     @PreAuthorize("hasRole('FACULTY')")
     @GetMapping("/faculty/my-quizzes")
-    public Object facultyQuizzes(Authentication auth) {
-        return service.facultyQuizzes(auth.getName());
+    public List<Quiz> getFacultyQuizzes(
+            Authentication authentication) {
+
+        return quizService.facultyQuizzes(
+                authentication.getName()
+        );
     }
+
     @PreAuthorize("hasRole('FACULTY')")
-    @PutMapping("/faculty/{id}/publish")
-    public Quiz publish(@PathVariable Long id, Authentication auth) {
-        return service.publish(id, auth.getName());
+    @PutMapping("/faculty/{quizId}/publish")
+    public Quiz publishQuiz(
+            @PathVariable Long quizId,
+            Authentication authentication) {
+
+        return quizService.publish(
+                quizId,
+                authentication.getName()
+        );
     }
+
     @PreAuthorize("hasRole('FACULTY')")
-    @PutMapping("/faculty/{id}/close")
-    public Quiz close(@PathVariable Long id, Authentication auth) {
-        return service.close(id, auth.getName());
+    @PutMapping("/faculty/{quizId}/close")
+    public Quiz closeQuiz(
+            @PathVariable Long quizId,
+            Authentication authentication) {
+
+        return quizService.close(
+                quizId,
+                authentication.getName()
+        );
     }
+
     @PreAuthorize("hasRole('FACULTY')")
-    @GetMapping("/faculty/{id}/reports")
-    public Object reports(@PathVariable Long id, Authentication auth) {
-        return service.quizReports(id, auth.getName());
+    @GetMapping("/faculty/{quizId}/reports")
+    public List<QuizAttempt> getQuizReports(
+            @PathVariable Long quizId,
+            Authentication authentication) {
+
+        return quizService.quizReports(
+                quizId,
+                authentication.getName()
+        );
     }
-    // ADMIN
+
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/admin/all")
-    public Object all() {
-        return service.allQuizzes();
+    public List<Quiz> getAllQuizzes() {
+        return quizService.allQuizzes();
     }
 }

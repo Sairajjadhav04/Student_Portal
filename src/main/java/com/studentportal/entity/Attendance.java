@@ -8,8 +8,10 @@ public class Attendance {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne(optional = false)
+    @JoinColumn(name = "student_id")
     private Student student;
     @ManyToOne(optional = false)
+    @JoinColumn(name = "subject_id")
     private Subject subject;
     private LocalDate attendanceDate;
     private boolean present;
