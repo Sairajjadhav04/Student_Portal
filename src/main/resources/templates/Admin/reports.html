@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0">
+
+    <title>Student Portal | Reports</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin-faculty.css">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <h2>Student Portal</h2>
+
+            <span>College Dashboard</span>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="/admin/dashboard"
+               class="nav-item">
+                Dashboard
+            </a>
+
+            <a href="/admin/students"
+               class="nav-item">
+                Students
+            </a>
+
+            <a href="/admin/faculty"
+               class="nav-item">
+                Faculty
+            </a>
+
+            <a href="/admin/subjects"
+               class="nav-item">
+                Subjects
+            </a>
+
+            <a href="/admin/courses"
+               class="nav-item">
+                Courses
+            </a>
+
+            <a href="/admin/reports"
+               class="nav-item active">
+                Reports
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="/login"
+               class="nav-item logout">
+
+                Logout
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="page-label">
+                    ADMIN MODULE
+                </p>
+
+                <h1>Reports</h1>
+
+                <p class="subtitle">
+                    College Dashboard
+                </p>
+
+            </div>
+
+
+            <div class="student-mini-profile">
+
+                <div class="profile-avatar">
+                    A
+                </div>
+
+                <div>
+
+                    <strong>Admin</strong>
+
+                    <span>Admin</span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <section class="portal-stat-grid">
+
+            <div class="portal-stat-card">
+
+                <span>Students</span>
+
+                <h2 id="students">
+                    --
+                </h2>
+
+                <small>
+                    Current records
+                </small>
+
+            </div>
+
+
+            <div class="portal-stat-card">
+
+                <span>Faculty</span>
+
+                <h2 id="faculty">
+                    --
+                </h2>
+
+                <small>
+                    Current records
+                </small>
+
+            </div>
+
+
+            <div class="portal-stat-card">
+
+                <span>Subjects</span>
+
+                <h2 id="subjects">
+                    --
+                </h2>
+
+                <small>
+                    Current records
+                </small>
+
+            </div>
+
+
+            <div class="portal-stat-card">
+
+                <span>Courses</span>
+
+                <h2 id="courses">
+                    --
+                </h2>
+
+                <small>
+                    Current records
+                </small>
+
+            </div>
+
+        </section>
+
+
+        <div class="dashboard-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>Portal Report</h2>
+
+                    <p>
+                        Current academic records
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="portal-list">
+
+                <div class="portal-list-item">
+
+                    <span>
+                        Total Students
+                    </span>
+
+                    <strong id="rStudents">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="portal-list-item">
+
+                    <span>
+                        Total Faculty
+                    </span>
+
+                    <strong id="rFaculty">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="portal-list-item">
+
+                    <span>
+                        Total Subjects
+                    </span>
+
+                    <strong id="rSubjects">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="portal-list-item">
+
+                    <span>
+                        Total Courses
+                    </span>
+
+                    <strong id="rCourses">
+                        --
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script src="/js/admin.js"></script>
+
+
+<script>
+
+    async function load() {
+
+        for (
+            const [id,u] of [
+            ['students','/api/admin/students'],
+            ['faculty','/api/admin/faculty'],
+            ['subjects','/api/admin/subjects'],
+            ['courses','/api/admin/courses']
+        ]
+            ) {
+
+            try {
+
+                let n =
+                    portalArray(
+                        await portalApi(u)
+                    ).length;
+
+
+                document.getElementById(
+                    id
+                ).textContent = n;
+
+
+                document.getElementById(
+                    'r' +
+                    id[0].toUpperCase() +
+                    id.slice(1)
+                ).textContent = n;
+
+            } catch(e) {}
+
+        }
+
+    }
+
+    load();
+
+</script>
+
+</body>
+</html>
