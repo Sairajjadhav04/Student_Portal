@@ -1,10 +1,296 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
+
     <meta charset="UTF-8">
-    <title>Title</title>
+
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0">
+
+    <title>Student Portal | Profile</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin-faculty.css">
+
 </head>
+
 <body>
+
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <h2>Student Portal</h2>
+
+            <span>College Dashboard</span>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="/faculty/dashboard"
+               class="nav-item">
+                Dashboard
+            </a>
+
+            <a href="/faculty/profile"
+               class="nav-item active">
+                Profile
+            </a>
+
+            <a href="/faculty/students"
+               class="nav-item">
+                Students
+            </a>
+
+            <a href="/faculty/subjects"
+               class="nav-item">
+                Subjects
+            </a>
+
+            <a href="/faculty/assignments"
+               class="nav-item">
+                Assignments
+            </a>
+
+            <a href="/faculty/attendance"
+               class="nav-item">
+                Attendance
+            </a>
+
+            <a href="/faculty/marks"
+               class="nav-item">
+                Marks
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="/login"
+               class="nav-item logout">
+
+                Logout
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="page-label">
+                    FACULTY MODULE
+                </p>
+
+                <h1>Profile</h1>
+
+                <p class="subtitle">
+                    College Dashboard
+                </p>
+
+            </div>
+
+
+            <div class="student-mini-profile">
+
+                <div class="profile-avatar">
+                    F
+                </div>
+
+                <div>
+
+                    <strong>Faculty</strong>
+
+                    <span>Faculty</span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <div class="dashboard-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>Faculty Profile</h2>
+
+                    <p>
+                        Faculty account information.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="portal-profile">
+
+                <div class="profile-avatar">
+                    F
+                </div>
+
+
+                <div>
+
+                    <h2 id="name">
+                        Faculty
+                    </h2>
+
+                    <p id="email">
+                        --
+                    </p>
+
+                    <p>
+                        Faculty
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="portal-form-grid">
+
+                <div class="portal-form-group">
+
+                    <label>Name</label>
+
+                    <input
+                            class="portal-input"
+                            id="pname"
+                            disabled>
+
+                </div>
+
+
+                <div class="portal-form-group">
+
+                    <label>Email</label>
+
+                    <input
+                            class="portal-input"
+                            id="pemail"
+                            disabled>
+
+                </div>
+
+
+                <div class="portal-form-group">
+
+                    <label>Department</label>
+
+                    <input
+                            class="portal-input"
+                            id="department"
+                            disabled>
+
+                </div>
+
+
+                <div class="portal-form-group">
+
+                    <label>Employee ID</label>
+
+                    <input
+                            class="portal-input"
+                            id="employeeId"
+                            disabled>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script src="/js/admin.js"></script>
+
+
+<script>
+
+    async function load() {
+
+        try {
+
+            let x =
+                await portalApi(
+                    '/api/faculty/profile'
+                );
+
+
+            let name =
+                x.name ||
+                x.fullName ||
+                'Faculty';
+
+
+            document.getElementById(
+                'name'
+            ).textContent = name;
+
+
+            document.getElementById(
+                'email'
+            ).textContent =
+                x.email || '--';
+
+
+            document.getElementById(
+                'pname'
+            ).value = name;
+
+
+            document.getElementById(
+                'pemail'
+            ).value =
+                x.email || '';
+
+
+            document.getElementById(
+                'department'
+            ).value =
+                x.department || '';
+
+
+            document.getElementById(
+                'employeeId'
+            ).value =
+                x.employeeId ||
+                x.id ||
+                '';
+
+        } catch(e) {
+
+            portalToast(e.message);
+
+        }
+
+    }
+
+
+    load();
+
+</script>
 
 </body>
 </html>

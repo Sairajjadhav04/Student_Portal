@@ -1,10 +1,449 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
+
     <meta charset="UTF-8">
-    <title>Title</title>
+
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0">
+
+    <title>Student Portal | Subjects</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin-faculty.css">
+
 </head>
+
 <body>
 
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <h2>Student Portal</h2>
+
+            <span>College Dashboard</span>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="/admin/dashboard"
+               class="nav-item">
+                Dashboard
+            </a>
+
+            <a href="/admin/students"
+               class="nav-item">
+                Students
+            </a>
+
+            <a href="/admin/faculty"
+               class="nav-item">
+                Faculty
+            </a>
+
+            <a href="/admin/subjects"
+               class="nav-item active">
+                Subjects
+            </a>
+
+            <a href="/admin/courses"
+               class="nav-item">
+                Courses
+            </a>
+
+            <a href="/admin/reports"
+               class="nav-item">
+                Reports
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="/login"
+               class="nav-item logout">
+
+                Logout
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="page-label">
+                    ADMIN MODULE
+                </p>
+
+                <h1>Subjects</h1>
+
+                <p class="subtitle">
+                    College Dashboard
+                </p>
+
+            </div>
+
+
+            <div class="student-mini-profile">
+
+                <div class="profile-avatar">
+                    A
+                </div>
+
+                <div>
+
+                    <strong>Admin</strong>
+
+                    <span>Admin</span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <div class="dashboard-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>Subjects</h2>
+
+                    <p>
+                        Manage subject records.
+                    </p>
+
+                </div>
+
+
+                <button
+                        class="portal-btn primary"
+                        onclick="openPortalModal('modal')">
+
+                    + Add
+
+                </button>
+
+            </div>
+
+
+            <div class="portal-filter">
+
+                <input
+                        class="portal-input"
+                        id="search"
+                        placeholder="Search..."
+                        oninput="render()">
+
+            </div>
+
+
+            <div class="portal-table-wrap">
+
+                <table class="portal-table">
+
+                    <thead>
+
+                    <tr>
+
+                        <th>Name</th>
+                        <th>Code</th>
+                        <th>Semester</th>
+                        <th>Course ID</th>
+                        <th>Actions</th>
+
+                    </tr>
+
+                    </thead>
+
+                    <tbody id="rows"></tbody>
+
+                </table>
+
+            </div>
+
+
+            <div class="portal-modal"
+                 id="modal">
+
+                <div class="portal-modal-box">
+
+                    <div class="portal-modal-head">
+
+                        <h2>Add Subject</h2>
+
+                        <button
+                                class="portal-close"
+                                onclick="closePortalModal('modal')">
+
+                            ×
+
+                        </button>
+
+                    </div>
+
+
+                    <form
+                            id="form"
+                            class="portal-form-grid">
+
+
+                        <div class="portal-form-group">
+
+                            <label>Subject Name</label>
+
+                            <input
+                                    class="portal-input"
+                                    name="name"
+                                    required>
+
+                        </div>
+
+
+                        <div class="portal-form-group">
+
+                            <label>Subject Code</label>
+
+                            <input
+                                    class="portal-input"
+                                    name="code"
+                                    required>
+
+                        </div>
+
+
+                        <div class="portal-form-group">
+
+                            <label>Semester</label>
+
+                            <input
+                                    class="portal-input"
+                                    name="semester">
+
+                        </div>
+
+
+                        <div class="portal-form-group">
+
+                            <label>Course ID</label>
+
+                            <input
+                                    class="portal-input"
+                                    name="courseId">
+
+                        </div>
+
+
+                        <div class="portal-form-group full">
+
+                            <button
+                                    class="portal-btn primary">
+
+                                Save
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script src="/js/admin.js"></script>
+
+<script>
+
+    let data = [];
+
+
+    async function load() {
+
+        try {
+
+            data = portalArray(
+                await portalApi('/api/admin/subjects')
+            );
+
+            render();
+
+        } catch(e) {
+
+            portalToast(e.message);
+
+        }
+
+    }
+
+
+    function render() {
+
+        let q =
+            (
+                document.getElementById('search')?.value || ''
+            ).toLowerCase();
+
+
+        let a = data.filter(x =>
+            JSON.stringify(x)
+                .toLowerCase()
+                .includes(q)
+        );
+
+
+        document.getElementById('rows').innerHTML =
+            a.length
+
+                ?
+
+                a.map(x => `
+
+            <tr>
+
+                <td>
+                    ${pEsc(x.name || "--")}
+                </td>
+
+                <td>
+                    ${pEsc(x.code || "--")}
+                </td>
+
+                <td>
+                    ${pEsc(x.semester || "--")}
+                </td>
+
+                <td>
+                    ${pEsc(x.courseId || "--")}
+                </td>
+
+                <td>
+
+                    <button
+                        class="portal-btn danger"
+                        onclick="removeRow(
+                            '${pEsc(
+                    x.id ||
+                    x.subjectId ||
+                    ''
+                )}'
+                        )">
+
+                        Delete
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+        `).join('')
+
+                :
+
+                `
+        <tr>
+            <td colspan="10"
+                class="portal-empty">
+
+                No records found.
+
+            </td>
+        </tr>
+        `;
+
+    }
+
+
+    async function removeRow(id) {
+
+        if (!id ||
+            !confirm('Delete this record?'))
+            return;
+
+
+        try {
+
+            await portalApi(
+                '/api/admin/subjects/' + id,
+                {
+                    method: 'DELETE'
+                }
+            );
+
+            load();
+
+        } catch(e) {
+
+            portalToast(e.message);
+
+        }
+
+    }
+
+
+    document.getElementById('form').onsubmit =
+        async e => {
+
+            e.preventDefault();
+
+
+            try {
+
+                await portalApi(
+                    '/api/admin/subjects',
+                    {
+                        method: 'POST',
+
+                        body: JSON.stringify(
+                            Object.fromEntries(
+                                new FormData(e.target)
+                            )
+                        )
+                    }
+                );
+
+
+                closePortalModal('modal');
+
+                e.target.reset();
+
+                load();
+
+            } catch(e) {
+
+                portalToast(e.message);
+
+            }
+
+        };
+
+
+    load();
+
+</script>
 </body>
 </html>

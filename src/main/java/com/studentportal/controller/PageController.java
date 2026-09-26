@@ -5,13 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class PageController {
-
     @GetMapping("/login")
     public String login() {
         return "login";
     }
-
-    // ================= STUDENT =================
 
     @GetMapping("/student/dashboard")
     public String dashboard() {
@@ -46,39 +43,13 @@ public class PageController {
     @GetMapping("/student/assignments")
     public String assignments() {
         return "student/assignments";
+        return "Student/assignments";
     }
 
-    @GetMapping("/student/quiz")
-    public String quiz() {
-        return "student/quiz";
-    }
-
-    @GetMapping("/student/quizzes")
-    public String studentQuizzes() {
-        return "Student/quizzes";
-    }
-
-    @GetMapping("/student/quiz/instructions")
-    public String quizInstructions() {
-        return "Student/quiz-instructions";
-    }
-
-    @GetMapping("/student/quiz/attempt")
-    public String attemptQuiz() {
-        return "Student/attempt-quiz";
-    }
-
-    @GetMapping("/student/quiz/result")
-    public String quizResult() {
-        return "Student/quiz-result";
-    }
-
-
-    // ================= FACULTY =================
 
     @GetMapping("/faculty/dashboard")
     public String facultyDashboard() {
-        return "Faculty/faculty-dashboard";
+        return "Faculty/dashboard";
     }
 
     @GetMapping("/faculty/profile")
@@ -96,6 +67,11 @@ public class PageController {
         return "Faculty/subjects";
     }
 
+    @GetMapping("/student/quiz")
+    public String quiz() {
+        return "student/quiz";
+    }
+
     @GetMapping("/faculty/attendance")
     public String facultyAttendance() {
         return "Faculty/attendance";
@@ -111,27 +87,10 @@ public class PageController {
         return "Faculty/assignments";
     }
 
-    @GetMapping("/faculty/quizzes")
-    public String facultyQuizzes() {
-        return "Faculty/quizzes";
-    }
-
-    @GetMapping("/faculty/quiz/create")
-    public String createQuiz() {
-        return "Faculty/create-quiz";
-    }
-
-    @GetMapping("/faculty/quiz/manage")
-    public String manageQuiz() {
-        return "Faculty/manage-quiz";
-    }
-
-
-    // ================= ADMIN =================
 
     @GetMapping("/admin/dashboard")
     public String adminDashboard() {
-        return "Admin/admin-dashboard";
+        return "Admin/dashboard";
     }
 
     @GetMapping("/admin/profile")
@@ -159,6 +118,34 @@ public class PageController {
         return "Admin/reports";
     }
 
+    @GetMapping("/faculty/quizzes")
+    public String facultyQuizzes() {
+        return "Faculty/quizzes";
+    }
+    @GetMapping("/faculty/quiz/create")
+    public String createQuiz() {
+        return "Faculty/create-quiz";
+    }
+    @GetMapping("/faculty/quiz/manage")
+    public String manageQuiz() {
+        return "Faculty/manage-quiz";
+    }
+    @GetMapping("/student/quizzes")
+    public String studentQuizzes() {
+        return "Student/quizzes";
+    }
+    @GetMapping("/student/quiz/instructions")
+    public String quizInstructions() {
+        return "Student/quiz-instructions";
+    }
+    @GetMapping("/student/quiz/attempt")
+    public String attemptQuiz() {
+        return "Student/attempt-quiz";
+    }
+    @GetMapping("/student/quiz/result")
+    public String quizResult() {
+        return "Student/quiz-result";
+    }
     @GetMapping("/admin/quizzes")
     public String adminQuizzes() {
         return "Admin/quizzes";
@@ -168,4 +155,5 @@ public class PageController {
     public String adminManageQuiz() {
         return "Admin/manage-quiz";
     }
+
 }

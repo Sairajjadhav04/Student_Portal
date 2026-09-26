@@ -8,7 +8,7 @@
     <meta name="viewport"
           content="width=device-width,initial-scale=1.0">
 
-    <title>Student Portal | Faculty</title>
+    <title>Student Portal | Assignments</title>
 
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/admin-faculty.css">
@@ -32,34 +32,39 @@
 
         <nav class="sidebar-nav">
 
-            <a href="/admin/dashboard"
+            <a href="/faculty/dashboard"
                class="nav-item">
                 Dashboard
             </a>
 
-            <a href="/admin/students"
+            <a href="/faculty/profile"
+               class="nav-item">
+                Profile
+            </a>
+
+            <a href="/faculty/students"
                class="nav-item">
                 Students
             </a>
 
-            <a href="/admin/faculty"
-               class="nav-item active">
-                Faculty
-            </a>
-
-            <a href="/admin/subjects"
+            <a href="/faculty/subjects"
                class="nav-item">
                 Subjects
             </a>
 
-            <a href="/admin/courses"
-               class="nav-item">
-                Courses
+            <a href="/faculty/assignments"
+               class="nav-item active">
+                Assignments
             </a>
 
-            <a href="/admin/reports"
+            <a href="/faculty/attendance"
                class="nav-item">
-                Reports
+                Attendance
+            </a>
+
+            <a href="/faculty/marks"
+               class="nav-item">
+                Marks
             </a>
 
         </nav>
@@ -86,10 +91,10 @@
             <div>
 
                 <p class="page-label">
-                    ADMIN MODULE
+                    FACULTY MODULE
                 </p>
 
-                <h1>Faculty</h1>
+                <h1>Assignments</h1>
 
                 <p class="subtitle">
                     College Dashboard
@@ -101,14 +106,14 @@
             <div class="student-mini-profile">
 
                 <div class="profile-avatar">
-                    A
+                    F
                 </div>
 
                 <div>
 
-                    <strong>Admin</strong>
+                    <strong>Faculty</strong>
 
-                    <span>Admin</span>
+                    <span>Faculty</span>
 
                 </div>
 
@@ -123,10 +128,10 @@
 
                 <div>
 
-                    <h2>Faculty</h2>
+                    <h2>Assignments</h2>
 
                     <p>
-                        Manage faculty records.
+                        Manage assignments records.
                     </p>
 
                 </div>
@@ -162,10 +167,10 @@
 
                     <tr>
 
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Employee ID</th>
-                        <th>Department</th>
+                        <th>Title</th>
+                        <th>Subject</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
                         <th>Actions</th>
 
                     </tr>
@@ -186,7 +191,7 @@
 
                     <div class="portal-modal-head">
 
-                        <h2>Add Faculty</h2>
+                        <h2>Add Assignment</h2>
 
                         <button
                                 class="portal-close"
@@ -206,11 +211,11 @@
 
                         <div class="portal-form-group">
 
-                            <label>Name</label>
+                            <label>Title</label>
 
                             <input
                                     class="portal-input"
-                                    name="name"
+                                    name="title"
                                     required>
 
                         </div>
@@ -218,11 +223,11 @@
 
                         <div class="portal-form-group">
 
-                            <label>Email</label>
+                            <label>Subject ID</label>
 
                             <input
                                     class="portal-input"
-                                    name="email"
+                                    name="subjectId"
                                     required>
 
                         </div>
@@ -230,22 +235,23 @@
 
                         <div class="portal-form-group">
 
-                            <label>Employee ID</label>
+                            <label>Due Date</label>
 
                             <input
                                     class="portal-input"
-                                    name="employeeId">
+                                    name="dueDate"
+                                    required>
 
                         </div>
 
 
                         <div class="portal-form-group">
 
-                            <label>Department</label>
+                            <label>Description</label>
 
                             <input
                                     class="portal-input"
-                                    name="department">
+                                    name="description">
 
                         </div>
 
@@ -276,6 +282,7 @@
 
 <script src="/js/admin.js"></script>
 
+
 <script>
 
     let data = [];
@@ -285,9 +292,12 @@
 
         try {
 
-            data = portalArray(
-                await portalApi('/api/admin/faculty')
-            );
+            data =
+                portalArray(
+                    await portalApi(
+                        '/api/faculty/assignments'
+                    )
+                );
 
             render();
 
@@ -304,18 +314,24 @@
 
         let q =
             (
-                document.getElementById('search')?.value || ''
+                document.getElementById(
+                    'search'
+                )?.value || ''
             ).toLowerCase();
 
 
-        let a = data.filter(x =>
-            JSON.stringify(x)
-                .toLowerCase()
-                .includes(q)
-        );
+        let a =
+            data.filter(x =>
+                JSON.stringify(x)
+                    .toLowerCase()
+                    .includes(q)
+            );
 
 
-        document.getElementById('rows').innerHTML =
+        document.getElementById(
+            'rows'
+        ).innerHTML =
+
             a.length
 
                 ?
@@ -325,19 +341,19 @@
             <tr>
 
                 <td>
-                    ${pEsc(x.name || "--")}
+                    ${pEsc(x.title || "--")}
                 </td>
 
                 <td>
-                    ${pEsc(x.email || "--")}
+                    ${pEsc(x.subjectName || "--")}
                 </td>
 
                 <td>
-                    ${pEsc(x.employeeId || "--")}
+                    ${pEsc(x.dueDate || "--")}
                 </td>
 
                 <td>
-                    ${pEsc(x.department || "--")}
+                    ${pEsc(x.status || "--")}
                 </td>
 
                 <td>
@@ -348,7 +364,7 @@
                             '${pEsc(
                     x.id ||
                     x.userId ||
-                    x.facultyId ||
+                    x.subjectId ||
                     ''
                 )}'
                         )">
@@ -367,12 +383,14 @@
 
                 `
         <tr>
+
             <td colspan="10"
                 class="portal-empty">
 
                 No records found.
 
             </td>
+
         </tr>
         `;
 
@@ -389,7 +407,7 @@
         try {
 
             await portalApi(
-                '/api/admin/faculty/' + id,
+                '/api/faculty/assignments/' + id,
                 {
                     method: 'DELETE'
                 }
@@ -415,7 +433,7 @@
             try {
 
                 await portalApi(
-                    '/api/admin/faculty',
+                    '/api/faculty/assignments',
                     {
                         method: 'POST',
 

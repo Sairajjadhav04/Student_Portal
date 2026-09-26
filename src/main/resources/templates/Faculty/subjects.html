@@ -1,10 +1,245 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
+
     <meta charset="UTF-8">
-    <title>Title</title>
+
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0">
+
+    <title>Student Portal | Subjects</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin-faculty.css">
+
 </head>
+
 <body>
+
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <h2>Student Portal</h2>
+
+            <span>College Dashboard</span>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="/faculty/dashboard"
+               class="nav-item">
+                Dashboard
+            </a>
+
+            <a href="/faculty/profile"
+               class="nav-item">
+                Profile
+            </a>
+
+            <a href="/faculty/students"
+               class="nav-item">
+                Students
+            </a>
+
+            <a href="/faculty/subjects"
+               class="nav-item active">
+                Subjects
+            </a>
+
+            <a href="/faculty/assignments"
+               class="nav-item">
+                Assignments
+            </a>
+
+            <a href="/faculty/attendance"
+               class="nav-item">
+                Attendance
+            </a>
+
+            <a href="/faculty/marks"
+               class="nav-item">
+                Marks
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="/login"
+               class="nav-item logout">
+
+                Logout
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="page-label">
+                    FACULTY MODULE
+                </p>
+
+                <h1>Subjects</h1>
+
+                <p class="subtitle">
+                    College Dashboard
+                </p>
+
+            </div>
+
+
+            <div class="student-mini-profile">
+
+                <div class="profile-avatar">
+                    F
+                </div>
+
+                <div>
+
+                    <strong>Faculty</strong>
+
+                    <span>Faculty</span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <div class="dashboard-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>Subjects</h2>
+
+                    <p>
+                        View assigned subjects.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="portal-table-wrap">
+
+                <table class="portal-table">
+
+                    <thead>
+
+                    <tr>
+
+                        <th>Name</th>
+                        <th>Code</th>
+                        <th>Semester</th>
+
+                    </tr>
+
+                    </thead>
+
+                    <tbody id="rows"></tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script src="/js/admin.js"></script>
+
+
+<script>
+
+    async function load() {
+
+        try {
+
+            let data =
+                portalArray(
+                    await portalApi(
+                        '/api/faculty/subjects'
+                    )
+                );
+
+
+            document.getElementById(
+                'rows'
+            ).innerHTML =
+
+                data.length
+
+                    ?
+
+                    data.map(x => `
+
+                <tr>
+
+                    <td>
+                        ${pEsc(x.name || "--")}
+                    </td>
+
+                    <td>
+                        ${pEsc(x.code || "--")}
+                    </td>
+
+                    <td>
+                        ${pEsc(x.semester || "--")}
+                    </td>
+
+                </tr>
+
+            `).join('')
+
+                    :
+
+                    `
+            <tr>
+
+                <td colspan="10"
+                    class="portal-empty">
+
+                    No records found.
+
+                </td>
+
+            </tr>
+            `;
+
+        } catch(e) {
+
+            portalToast(e.message);
+
+        }
+
+    }
+
+
+    load();
+
+</script>
 
 </body>
 </html>
