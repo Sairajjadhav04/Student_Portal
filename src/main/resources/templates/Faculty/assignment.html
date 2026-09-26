@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0">
+
+    <title>Student Portal | Assignments</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin-faculty.css">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <h2>Student Portal</h2>
+
+            <span>College Dashboard</span>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="/faculty/dashboard"
+               class="nav-item">
+                Dashboard
+            </a>
+
+            <a href="/faculty/profile"
+               class="nav-item">
+                Profile
+            </a>
+
+            <a href="/faculty/students"
+               class="nav-item">
+                Students
+            </a>
+
+            <a href="/faculty/subjects"
+               class="nav-item">
+                Subjects
+            </a>
+
+            <a href="/faculty/assignments"
+               class="nav-item active">
+                Assignments
+            </a>
+
+            <a href="/faculty/attendance"
+               class="nav-item">
+                Attendance
+            </a>
+
+            <a href="/faculty/marks"
+               class="nav-item">
+                Marks
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="/login"
+               class="nav-item logout">
+
+                Logout
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="page-label">
+                    FACULTY MODULE
+                </p>
+
+                <h1>Assignments</h1>
+
+                <p class="subtitle">
+                    College Dashboard
+                </p>
+
+            </div>
+
+
+            <div class="student-mini-profile">
+
+                <div class="profile-avatar">
+                    F
+                </div>
+
+                <div>
+
+                    <strong>Faculty</strong>
+
+                    <span>Faculty</span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <div class="dashboard-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>Assignments</h2>
+
+                    <p>
+                        Manage assignments records.
+                    </p>
+
+                </div>
+
+
+                <button
+                        class="portal-btn primary"
+                        onclick="openPortalModal('modal')">
+
+                    + Add
+
+                </button>
+
+            </div>
+
+
+            <div class="portal-filter">
+
+                <input
+                        class="portal-input"
+                        id="search"
+                        placeholder="Search..."
+                        oninput="render()">
+
+            </div>
+
+
+            <div class="portal-table-wrap">
+
+                <table class="portal-table">
+
+                    <thead>
+
+                    <tr>
+
+                        <th>Title</th>
+                        <th>Subject</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+
+                    </tr>
+
+                    </thead>
+
+                    <tbody id="rows"></tbody>
+
+                </table>
+
+            </div>
+
+
+            <div class="portal-modal"
+                 id="modal">
+
+                <div class="portal-modal-box">
+
+                    <div class="portal-modal-head">
+
+                        <h2>Add Assignment</h2>
+
+                        <button
+                                class="portal-close"
+                                onclick="closePortalModal('modal')">
+
+                            ×
+
+                        </button>
+
+                    </div>
+
+
+                    <form
+                            id="form"
+                            class="portal-form-grid">
+
+
+                        <div class="portal-form-group">
+
+                            <label>Title</label>
+
+                            <input
+                                    class="portal-input"
+                                    name="title"
+                                    required>
+
+                        </div>
+
+
+                        <div class="portal-form-group">
+
+                            <label>Subject ID</label>
+
+                            <input
+                                    class="portal-input"
+                                    name="subjectId"
+                                    required>
+
+                        </div>
+
+
+                        <div class="portal-form-group">
+
+                            <label>Due Date</label>
+
+                            <input
+                                    class="portal-input"
+                                    name="dueDate"
+                                    required>
+
+                        </div>
+
+
+                        <div class="portal-form-group">
+
+                            <label>Description</label>
+
+                            <input
+                                    class="portal-input"
+                                    name="description">
+
+                        </div>
+
+
+                        <div class="portal-form-group full">
+
+                            <button
+                                    class="portal-btn primary">
+
+                                Save
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script src="/js/admin.js"></script>
+
+
+<script>
+
+    let data = [];
+
+
+    async function load() {
+
+        try {
+
+            data =
+                portalArray(
+                    await portalApi(
+                        '/api/faculty/assignments'
+                    )
+                );
+
+            render();
+
+        } catch(e) {
+
+            portalToast(e.message);
+
+        }
+
+    }
+
+
+    function render() {
+
+        let q =
+            (
+                document.getElementById(
+                    'search'
+                )?.value || ''
+            ).toLowerCase();
+
+
+        let a =
+            data.filter(x =>
+                JSON.stringify(x)
+                    .toLowerCase()
+                    .includes(q)
+            );
+
+
+        document.getElementById(
+            'rows'
+        ).innerHTML =
+
+            a.length
+
+                ?
+
+                a.map(x => `
+
+            <tr>
+
+                <td>
+                    ${pEsc(x.title || "--")}
+                </td>
+
+                <td>
+                    ${pEsc(x.subjectName || "--")}
+                </td>
+
+                <td>
+                    ${pEsc(x.dueDate || "--")}
+                </td>
+
+                <td>
+                    ${pEsc(x.status || "--")}
+                </td>
+
+                <td>
+
+                    <button
+                        class="portal-btn danger"
+                        onclick="removeRow(
+                            '${pEsc(
+                    x.id ||
+                    x.userId ||
+                    x.subjectId ||
+                    ''
+                )}'
+                        )">
+
+                        Delete
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+        `).join('')
+
+                :
+
+                `
+        <tr>
+
+            <td colspan="10"
+                class="portal-empty">
+
+                No records found.
+
+            </td>
+
+        </tr>
+        `;
+
+    }
+
+
+    async function removeRow(id) {
+
+        if (!id ||
+            !confirm('Delete this record?'))
+            return;
+
+
+        try {
+
+            await portalApi(
+                '/api/faculty/assignments/' + id,
+                {
+                    method: 'DELETE'
+                }
+            );
+
+            load();
+
+        } catch(e) {
+
+            portalToast(e.message);
+
+        }
+
+    }
+
+
+    document.getElementById('form').onsubmit =
+        async e => {
+
+            e.preventDefault();
+
+
+            try {
+
+                await portalApi(
+                    '/api/faculty/assignments',
+                    {
+                        method: 'POST',
+
+                        body: JSON.stringify(
+                            Object.fromEntries(
+                                new FormData(e.target)
+                            )
+                        )
+                    }
+                );
+
+
+                closePortalModal('modal');
+
+                e.target.reset();
+
+                load();
+
+            } catch(e) {
+
+                portalToast(e.message);
+
+            }
+
+        };
+
+
+    load();
+
+</script>
+
+</body>
+</html>

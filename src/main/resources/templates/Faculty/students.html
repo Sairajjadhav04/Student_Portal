@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0">
+
+    <title>Student Portal | Dashboard</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin-faculty.css">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <h2>Student Portal</h2>
+
+            <span>College Dashboard</span>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="/faculty/dashboard"
+               class="nav-item active">
+                Dashboard
+            </a>
+
+            <a href="/faculty/profile"
+               class="nav-item">
+                Profile
+            </a>
+
+            <a href="/faculty/students"
+               class="nav-item">
+                Students
+            </a>
+
+            <a href="/faculty/subjects"
+               class="nav-item">
+                Subjects
+            </a>
+
+            <a href="/faculty/assignments"
+               class="nav-item">
+                Assignments
+            </a>
+
+            <a href="/faculty/attendance"
+               class="nav-item">
+                Attendance
+            </a>
+
+            <a href="/faculty/marks"
+               class="nav-item">
+                Marks
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="/login"
+               class="nav-item logout">
+
+                Logout
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="page-label">
+                    FACULTY MODULE
+                </p>
+
+                <h1>Dashboard</h1>
+
+                <p class="subtitle">
+                    College Dashboard
+                </p>
+
+            </div>
+
+
+            <div class="student-mini-profile">
+
+                <div class="profile-avatar">
+                    F
+                </div>
+
+                <div>
+
+                    <strong>Faculty</strong>
+
+                    <span>Faculty</span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <section class="portal-stat-grid">
+
+            <div class="portal-stat-card">
+
+                <span>Students</span>
+
+                <h2 id="students">
+                    --
+                </h2>
+
+                <small>
+                    Current records
+                </small>
+
+            </div>
+
+
+            <div class="portal-stat-card">
+
+                <span>Subjects</span>
+
+                <h2 id="subjects">
+                    --
+                </h2>
+
+                <small>
+                    Current records
+                </small>
+
+            </div>
+
+
+            <div class="portal-stat-card">
+
+                <span>Assignments</span>
+
+                <h2 id="assignments">
+                    --
+                </h2>
+
+                <small>
+                    Current records
+                </small>
+
+            </div>
+
+
+            <div class="portal-stat-card">
+
+                <span>Attendance</span>
+
+                <h2 id="attendance">
+                    --
+                </h2>
+
+                <small>
+                    Current records
+                </small>
+
+            </div>
+
+        </section>
+
+
+        <section class="content-grid">
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h2>
+                            Teaching Overview
+                        </h2>
+
+                        <p>
+                            Your current faculty records
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="portal-list">
+
+                    <div class="portal-list-item">
+
+                        <span>
+                            Students
+                        </span>
+
+                        <strong id="aStudents">
+                            --
+                        </strong>
+
+                    </div>
+
+
+                    <div class="portal-list-item">
+
+                        <span>
+                            Subjects
+                        </span>
+
+                        <strong id="aSubjects">
+                            --
+                        </strong>
+
+                    </div>
+
+
+                    <div class="portal-list-item">
+
+                        <span>
+                            Assignments
+                        </span>
+
+                        <strong id="aAssignments">
+                            --
+                        </strong>
+
+                    </div>
+
+
+                    <div class="portal-list-item">
+
+                        <span>
+                            Attendance
+                        </span>
+
+                        <strong id="aAttendance">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h2>
+                            Quick Access
+                        </h2>
+
+                        <p>
+                            Faculty actions
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="quick-links">
+
+                    <a
+                            class="quick-link"
+                            href="/faculty/attendance">
+
+                        <span>
+                            Attendance
+                        </span>
+
+                        <span>
+                            →
+                        </span>
+
+                    </a>
+
+
+                    <a
+                            class="quick-link"
+                            href="/faculty/marks">
+
+                        <span>
+                            Marks
+                        </span>
+
+                        <span>
+                            →
+                        </span>
+
+                    </a>
+
+
+                    <a
+                            class="quick-link"
+                            href="/faculty/assignments">
+
+                        <span>
+                            Assignments
+                        </span>
+
+                        <span>
+                            →
+                        </span>
+
+                    </a>
+
+
+                    <a
+                            class="quick-link"
+                            href="/faculty/students">
+
+                        <span>
+                            Students
+                        </span>
+
+                        <span>
+                            →
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="/js/admin.js"></script>
+
+
+<script>
+
+    async function load() {
+
+        for (
+            const [id,u] of [
+            ['students','/api/faculty/students'],
+            ['subjects','/api/faculty/subjects'],
+            ['assignments','/api/faculty/assignments'],
+            ['attendance','/api/faculty/attendance']
+        ]
+            ) {
+
+            try {
+
+                let n =
+                    portalArray(
+                        await portalApi(u)
+                    ).length;
+
+
+                document.getElementById(
+                    id
+                ).textContent = n;
+
+
+                document.getElementById(
+                    'a' +
+                    id[0].toUpperCase() +
+                    id.slice(1)
+                ).textContent = n;
+
+            } catch(e) {}
+
+        }
+
+    }
+
+    load();
+
+</script>
+
+</body>
+</html>
