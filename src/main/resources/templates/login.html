@@ -43,7 +43,6 @@
 
 
 <script>
-
   document.getElementById("loginForm").addEventListener("submit", async function(event) {
 
     event.preventDefault();
@@ -54,51 +53,75 @@
 
     try {
 
-      const response = await fetch("http://localhost:8081/api/auth/login", {
-
+      // LOGIN
+      const response = await fetch("/api/auth/login", {
         method: "POST",
-
         headers: {
           "Content-Type": "application/json"
         },
-
         body: JSON.stringify({
           username: username,
           password: password
         })
-
       });
 
       const data = await response.json();
 
-      if (response.ok) {
+      if (!response.ok) {
+        message.textContent =
+                data.message || "Invalid username or password.";
+        return;
+      }
 
-        // Save JWT token
-        localStorage.setItem("token", data.token);
+      // Save token
+      localStorage.setItem("token", data.token);
 
-        message.textContent = "Login successful!";
+      // GET CURRENT USER
+      const meResponse = await fetch("/api/auth/me", {
+        method: "GET",
+        headers: {
+          "Authorization": "Bearer " + data.token
+        }
+      });
 
-        // Go to student dashboard
+      const user = await meResponse.json();
+
+      if (!meResponse.ok) {
+        message.textContent = "Unable to get user information.";
+        return;
+      }
+
+      // Save user information
+      localStorage.setItem("userId", user.id);
+      localStorage.setItem("username", user.username);
+      localStorage.setItem("role", user.role);
+
+      // Redirect according to role
+      if (user.role === "STUDENT") {
+
         window.location.href = "/student/dashboard";
+
+      } else if (user.role === "FACULTY") {
+
+        window.location.href = "/faculty/dashboard";
+
+      } else if (user.role === "ADMIN") {
+
+        window.location.href = "/admin/dashboard";
 
       } else {
 
-        message.textContent =
-                data.message || "Invalid username or password.";
+        message.textContent = "Unknown user role.";
 
       }
 
     } catch (error) {
 
       console.error(error);
-
-      message.textContent =
-              "Unable to connect to the server.";
+      message.textContent = "Unable to connect to the server.";
 
     }
-
   });
-
 </script>
 
 </body>

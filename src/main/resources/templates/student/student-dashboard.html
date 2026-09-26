@@ -1,20 +1,13 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-<head>
+<!DOCTYPE html><html lang="en" xmlns:th="http://www.thymeleaf.org"><head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Student Portal | Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Student Portal | Dashboard</title>
 
     <link rel="stylesheet" href="/css/style.css">
-</head>
 
-<body>
+</head><body><div class="dashboard-container"><!-- =====================================================
+     SIDEBAR
+====================================================== -->
 
-<div class="dashboard-container">
-
-    <!-- SIDEBAR -->
     <aside class="sidebar">
 
         <div class="logo">
@@ -71,31 +64,54 @@
     </aside>
 
 
-    <!-- MAIN CONTENT -->
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
     <main class="main-content">
 
-        <!-- TOP SECTION -->
+
+        <!-- =================================================
+             TOPBAR
+        ================================================== -->
+
         <header class="topbar">
 
             <div>
-                <p class="page-label">STUDENT DASHBOARD</p>
 
-                <h1 id="welcomeMessage">Welcome back</h1>
+                <p class="page-label">
+                    STUDENT DASHBOARD
+                </p>
+
+                <h1 id="welcomeMessage">
+                    Welcome back
+                </h1>
 
                 <p class="subtitle">
                     Here's an overview of your academic activities.
                 </p>
+
             </div>
+
 
             <div class="student-mini-profile">
 
-                <div class="profile-avatar" id="profileInitial">
+                <div
+                        class="profile-avatar"
+                        id="profileInitial">
                     S
                 </div>
 
                 <div>
-                    <strong id="studentName">Loading...</strong>
-                    <span>Student</span>
+
+                    <strong id="studentName">
+                        Loading...
+                    </strong>
+
+                    <span>
+                    Student
+                </span>
+
                 </div>
 
             </div>
@@ -103,48 +119,100 @@
         </header>
 
 
-        <!-- SUMMARY -->
+        <!-- =================================================
+             SUMMARY CARDS
+        ================================================== -->
+
         <section class="summary-grid">
 
+
+            <!-- Attendance -->
+
             <div class="summary-card">
 
                 <div class="summary-info">
-                    <span>Attendance</span>
-                    <h2 id="attendanceValue">--</h2>
-                    <small>Good standing</small>
+
+                <span>
+                    Attendance
+                </span>
+
+                    <h2 id="attendanceValue">
+                        --
+                    </h2>
+
+                    <small>
+                        Good standing
+                    </small>
+
                 </div>
 
             </div>
 
 
+            <!-- CGPA -->
+
             <div class="summary-card">
 
                 <div class="summary-info">
-                    <span>Current CGPA</span>
-                    <h2 id="cgpaValue">--</h2>
-                    <small>Excellent</small>
+
+                <span>
+                    Current CGPA
+                </span>
+
+                    <h2 id="cgpaValue">
+                        --
+                    </h2>
+
+                    <small>
+                        Current performance
+                    </small>
+
                 </div>
 
             </div>
 
 
+            <!-- Assignments -->
+
             <div class="summary-card">
 
                 <div class="summary-info">
-                    <span>Assignments</span>
-                    <h2 id="assignmentValue">--</h2>
-                    <small>Pending</small>
+
+                <span>
+                    Assignments
+                </span>
+
+                    <h2 id="assignmentValue">
+                        --
+                    </h2>
+
+                    <small>
+                        Total assignments
+                    </small>
+
                 </div>
 
             </div>
 
 
+            <!-- Subjects -->
+
             <div class="summary-card">
 
                 <div class="summary-info">
-                    <span>Subjects</span>
-                    <h2 id="subjectValue">--</h2>
-                    <small>Current semester</small>
+
+                <span>
+                    Subjects
+                </span>
+
+                    <h2 id="subjectValue">
+                        --
+                    </h2>
+
+                    <small>
+                        Current semester
+                    </small>
+
                 </div>
 
             </div>
@@ -152,19 +220,33 @@
         </section>
 
 
-        <!-- MAIN GRID -->
+        <!-- =================================================
+             MAIN GRID
+        ================================================== -->
+
         <section class="content-grid">
 
 
-            <!-- ASSIGNMENTS -->
+            <!-- =================================================
+                 RECENT ASSIGNMENTS
+            ================================================== -->
+
             <div class="dashboard-card">
 
                 <div class="card-header">
 
                     <div>
-                        <h2>Recent Assignments</h2>
-                        <p>Your latest academic tasks</p>
+
+                        <h2>
+                            Recent Assignments
+                        </h2>
+
+                        <p>
+                            Your latest academic tasks
+                        </p>
+
                     </div>
+
 
                     <a href="/student/assignments">
                         View all
@@ -173,157 +255,132 @@
                 </div>
 
 
-                <div class="assignment-list">
+                <!--
+                    JavaScript will load assignments
+                    from:
 
-                    <div class="assignment-item">
+                    /api/student/academics/assignments
+                -->
 
-                        <div class="assignment-details">
-                            <strong>Java Programming</strong>
-                            <p>Object Oriented Programming</p>
-                        </div>
+                <div
+                        class="assignment-list"
+                        id="dashboardAssignmentList">
 
-                        <span class="assignment-date">
-                            15 Sep
-                        </span>
-
-                        <span class="assignment-status status-pending">
-                            Pending
-                        </span>
-
-                    </div>
-
-
-                    <div class="assignment-item">
-
-                        <div class="assignment-details">
-                            <strong>Database Management</strong>
-                            <p>SQL & PostgreSQL</p>
-                        </div>
-
-                        <span class="assignment-date">
-                            18 Sep
-                        </span>
-
-                        <span class="assignment-status status-pending">
-                            Pending
-                        </span>
-
-                    </div>
-
-
-                    <div class="assignment-item">
-
-                        <div class="assignment-details">
-                            <strong>Web Development</strong>
-                            <p>HTML & CSS</p>
-                        </div>
-
-                        <span class="assignment-date">
-                            20 Sep
-                        </span>
-
-                        <span class="assignment-status status-completed">
-                            Completed
-                        </span>
-
-                    </div>
+                    <p>
+                        Loading assignments...
+                    </p>
 
                 </div>
 
             </div>
 
 
-            <!-- ACADEMIC PROGRESS -->
-            <div class="dashboard-card"><div class="card-header">
+            <!-- =================================================
+                 ACADEMIC PROGRESS
+            ================================================== -->
 
-                <div>
-                    <h2>Academic Progress</h2>
-                    <p>Your current performance</p>
+            <div class="dashboard-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h2>
+                            Academic Progress
+                        </h2>
+
+                        <p>
+                            Your current performance
+                        </p>
+
+                    </div>
+
                 </div>
 
-            </div>
 
                 <!-- Overall Progress -->
+
                 <div class="progress-container">
 
                     <div class="progress-label">
-                        <span>Overall Progress</span>
-                        <span id="overallProgressValue">--%</span>
+
+                    <span>
+                        Overall Progress
+                    </span>
+
+                        <span id="overallProgressValue">
+                        --%
+                    </span>
+
                     </div>
 
                     <div class="progress-bar">
+
                         <div
                                 id="overallProgressBar"
                                 class="progress-fill"
                                 style="width: 0%;">
                         </div>
+
                     </div>
 
                 </div>
 
+
                 <!-- Attendance -->
+
                 <div class="progress-container">
 
                     <div class="progress-label">
-                        <span>Attendance</span>
-                        <span id="dashboardAttendanceProgress">--%</span>
+
+                    <span>
+                        Attendance
+                    </span>
+
+                        <span id="dashboardAttendanceProgress">
+                        --%
+                    </span>
+
                     </div>
 
                     <div class="progress-bar">
+
                         <div
                                 id="dashboardAttendanceBar"
                                 class="progress-fill"
                                 style="width: 0%;">
                         </div>
+
                     </div>
 
                 </div>
 
+
                 <!-- Assignments -->
+
                 <div class="progress-container">
+
                     <div class="progress-label">
-                        <span>Assignments</span>
-                        <span id="dashboardAssignmentProgress">--%</span>
+
+                    <span>
+                        Assignments
+                    </span>
+
+                        <span id="dashboardAssignmentProgress">
+                        --%
+                    </span>
+
                     </div>
 
                     <div class="progress-bar">
+
                         <div
                                 id="dashboardAssignmentBar"
                                 class="progress-fill"
                                 style="width: 0%;">
                         </div>
+
                     </div>
-                </div>
-
-
-                <div class="progress-container">
-
-                    <div class="progress-label">
-                        <span>Attendance</span>
-                        <span id="dashboardAttendance" class="progress-fill"></span>
-                    </div>
-
-                    <div class="progress-bar">
-                        <div
-                                class="progress-fill"
-                                style="width: 85%;">
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <div class="progress-container">
-
-                    <div class="progress-label">
-                        <span>Assignments</span>
-                        <span id="dashboardAssignmentProgress">--%</span>
-                    </div>
-
-                    <div class="progress-bar">
-                        <div id="dashboardAssignmentBar"
-                             class="progress-fill"
-                             style="width: 0%;"></div>
 
                 </div>
 
@@ -332,14 +389,24 @@
         </section>
 
 
-        <!-- QUICK LINKS -->
+        <!-- =================================================
+             QUICK ACCESS
+        ================================================== -->
+
         <section class="dashboard-card">
 
             <div class="card-header">
 
                 <div>
-                    <h2>Quick Access</h2>
-                    <p>Frequently used sections</p>
+
+                    <h2>
+                        Quick Access
+                    </h2>
+
+                    <p>
+                        Frequently used sections
+                    </p>
+
                 </div>
 
             </div>
@@ -347,24 +414,79 @@
 
             <div class="quick-links">
 
-                <a href="/student/profile" class="quick-link">
-                    <span>View Profile</span>
-                    <span>→</span>
+
+                <a
+                        href="/student/profile"
+                        class="quick-link">
+
+                <span>
+                    View Profile
+                </span>
+
+                    <span>
+                    →
+                </span>
+
                 </a>
 
-                <a href="/student/attendance" class="quick-link">
-                    <span>Check Attendance</span>
-                    <span>→</span>
+
+                <a
+                        href="/student/attendance"
+                        class="quick-link">
+
+                <span>
+                    Check Attendance
+                </span>
+
+                    <span>
+                    →
+                </span>
+
                 </a>
 
-                <a href="/student/marks" class="quick-link">
-                    <span>View Marks</span>
-                    <span>→</span>
+
+                <a
+                        href="/student/assignments"
+                        class="quick-link">
+
+                <span>
+                    View Assignments
+                </span>
+
+                    <span>
+                    →
+                </span>
+
                 </a>
 
-                <a href="/student/results" class="quick-link">
-                    <span>View Results</span>
-                    <span>→</span>
+
+                <a
+                        href="/student/marks"
+                        class="quick-link">
+
+                <span>
+                    View Marks
+                </span>
+
+                    <span>
+                    →
+                </span>
+
+                </a>
+
+
+                <a
+                        href="/student/results"
+                        class="quick-link">
+
+                <span>
+                    View Results
+                </span>
+
+                    <span>
+                    →
+                </span>
+
                 </a>
 
             </div>
@@ -373,9 +495,6 @@
 
     </main>
 
-</div>
-<script src="/js/student.js"></script>
-
-</body>
-
-</html>
+</div><!-- =====================================================
+     JAVASCRIPT
+====================================================== --><script src="/js/student.js"></script></body></html>

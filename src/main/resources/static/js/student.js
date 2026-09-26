@@ -239,6 +239,185 @@ async function loadAssignmentProgress() {
 
         ]);
 
+        // =====================================================
+// DASHBOARD RECENT ASSIGNMENTS
+// =====================================================
+
+        async function loadDashboardAssignments() {
+
+            const token = localStorage.getItem("token");
+
+            if (!token) {
+                window.location.href = "/login";
+                return;
+            }
+
+            const assignmentList =
+                document.getElementById("dashboardAssignmentList");
+
+            if (!assignmentList) {
+                return;
+            }
+
+            try {
+
+                const response = await fetch(
+                    "/api/student/academics/assignments",
+                    {
+                        method: "GET",
+                        headers: {
+                            "Authorization": "Bearer " + token
+                        }
+                    }
+                );
+
+                // Authentication check
+                if (
+                    response.status === 401 ||
+                    response.status === 403
+                ) {
+                    localStorage.removeItem("token");
+                    window.location.href = "/login";
+                    return;
+                }
+
+                if (!response.ok) {
+                    throw new Error("Failed to load assignments");
+                }
+
+                const assignments =
+                    await response.json();
+
+                console.log(
+                    "Dashboard assignments:",
+                    assignments
+                );
+
+                displayDashboardAssignments(assignments);
+
+            } catch (error) {
+
+                console.error(
+                    "Dashboard assignments error:",
+                    error
+                );
+
+                assignmentList.innerHTML = `
+        <p>
+            Unable to load assignments.
+        </p>
+    `;
+            }
+
+        }
+
+// =====================================================
+// DISPLAY DASHBOARD ASSIGNMENTS
+// =====================================================
+
+        function displayDashboardAssignments(assignments) {
+
+            const assignmentList =
+                document.getElementById(
+                    "dashboardAssignmentList"
+                );
+
+            if (!assignmentList) {
+                return;
+            }
+
+            assignments = assignments || [];
+
+// No assignments
+            if (assignments.length === 0) {
+
+                assignmentList.innerHTML = `
+        <p>
+            No assignments available.
+        </p>
+    `;
+
+                return;
+            }
+
+// Show only latest 3 assignments
+            const recentAssignments =
+                assignments.slice(0, 3);
+
+            assignmentList.innerHTML = "";
+
+            recentAssignments.forEach(function (assignment) {
+
+                const item =
+                    document.createElement("div");
+
+                item.className =
+                    "assignment-item";
+
+                const subjectName =
+                    assignment.subject?.name ||
+                    "Subject not assigned";
+
+                const dueDate =
+                    assignment.dueDate
+                        ? formatDashboardDate(
+                            assignment.dueDate
+                        )
+                        : "No due date";
+
+                item.innerHTML = `
+
+        <div class="assignment-details">
+
+            <strong>
+                ${assignment.title || "Untitled Assignment"}
+            </strong>
+
+            <p>
+                ${subjectName}
+            </p>
+
+        </div>
+
+        <span class="assignment-date">
+            ${dueDate}
+        </span>
+
+        <span class="assignment-status status-pending">
+            Pending
+        </span>
+
+    `;
+
+                assignmentList.appendChild(item);
+
+            });
+
+        }
+
+// =====================================================
+// FORMAT ASSIGNMENT DATE
+// =====================================================
+
+        function formatDashboardDate(dateValue) {
+
+            const date =
+                new Date(dateValue);
+
+            if (isNaN(date.getTime())) {
+                return dateValue;
+            }
+
+            return date.toLocaleDateString(
+                "en-IN",
+                {
+                    day: "2-digit",
+                    month: "short"
+                }
+            );
+
+        }
+
 
         // -----------------------------
         // AUTH CHECK
