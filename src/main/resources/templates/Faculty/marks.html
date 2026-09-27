@@ -6,9 +6,9 @@
     <meta charset="UTF-8">
 
     <meta name="viewport"
-          content="width=device-width,initial-scale=1.0">
+          content="width=device-width, initial-scale=1.0">
 
-    <title>Student Portal | Attendance</title>
+    <title>Student Portal | Marks</title>
 
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/admin-faculty.css">
@@ -32,38 +32,31 @@
 
         <nav class="sidebar-nav">
 
-            <a href="/faculty/dashboard"
-               class="nav-item">
+            <a href="/faculty/dashboard" class="nav-item">
                 Dashboard
             </a>
 
-            <a href="/faculty/profile"
-               class="nav-item">
+            <a href="/faculty/profile" class="nav-item">
                 Profile
             </a>
 
-            <a href="/faculty/students"
-               class="nav-item">
+            <a href="/faculty/students" class="nav-item">
                 Students
             </a>
 
-            <a href="/faculty/subjects"
-               class="nav-item">
+            <a href="/faculty/subjects" class="nav-item">
                 Subjects
             </a>
 
-            <a href="/faculty/assignments"
-               class="nav-item">
+            <a href="/faculty/assignments" class="nav-item">
                 Assignments
             </a>
 
-            <a href="/faculty/attendance"
-               class="nav-item active">
+            <a href="/faculty/attendance" class="nav-item">
                 Attendance
             </a>
 
-            <a href="/faculty/marks"
-               class="nav-item">
+            <a href="/faculty/marks" class="nav-item active">
                 Marks
             </a>
 
@@ -72,11 +65,8 @@
 
         <div class="sidebar-bottom">
 
-            <a href="/login"
-               class="nav-item logout">
-
+            <a href="/login" class="nav-item logout">
                 Logout
-
             </a>
 
         </div>
@@ -94,10 +84,10 @@
                     FACULTY MODULE
                 </p>
 
-                <h1>Attendance</h1>
+                <h1>Marks</h1>
 
                 <p class="subtitle">
-                    College Dashboard
+                    Manage student marks
                 </p>
 
             </div>
@@ -122,16 +112,18 @@
         </header>
 
 
+        <!-- ADD MARKS -->
+
         <div class="dashboard-card">
 
             <div class="card-header">
 
                 <div>
 
-                    <h2>Attendance</h2>
+                    <h2>Add Marks</h2>
 
                     <p>
-                        Manage student attendance.
+                        Enter marks for a student.
                     </p>
 
                 </div>
@@ -143,27 +135,66 @@
 
                 <div class="portal-form-group">
 
-                    <label>
-                        Subject ID
-                    </label>
+                    <label>Student ID</label>
 
                     <input
                             class="portal-input"
-                            id="subjectId">
+                            id="studentId"
+                            type="number"
+                            placeholder="Enter student ID">
 
                 </div>
 
 
                 <div class="portal-form-group">
 
-                    <label>
-                        Date
-                    </label>
+                    <label>Subject ID</label>
 
                     <input
                             class="portal-input"
-                            type="date"
-                            id="date">
+                            id="subjectId"
+                            type="number"
+                            placeholder="Enter subject ID">
+
+                </div>
+
+
+                <div class="portal-form-group">
+
+                    <label>Exam Type</label>
+
+                    <input
+                            class="portal-input"
+                            id="examType"
+                            placeholder="Example: Midterm">
+
+                </div>
+
+
+                <div class="portal-form-group">
+
+                    <label>Obtained Marks</label>
+
+                    <input
+                            class="portal-input"
+                            id="obtainedMarks"
+                            type="number"
+                            step="0.01"
+                            placeholder="Obtained marks">
+
+                </div>
+
+
+                <div class="portal-form-group">
+
+                    <label>Total Marks</label>
+
+                    <input
+                            class="portal-input"
+                            id="totalMarks"
+                            type="number"
+                            step="0.01"
+                            placeholder="Total marks">
 
                 </div>
 
@@ -172,12 +203,63 @@
 
             <br>
 
+            <button
+                    class="portal-btn primary"
+                    onclick="saveMarks()">
+
+                Save Marks
+
+            </button>
+
+        </div>
+
+
+        <br>
+
+
+        <!-- VIEW MARKS -->
+
+        <div class="dashboard-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>Subject Marks</h2>
+
+                    <p>
+                        View marks for a subject.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="portal-form-grid">
+
+                <div class="portal-form-group">
+
+                    <label>Subject ID</label>
+
+                    <input
+                            class="portal-input"
+                            id="viewSubjectId"
+                            type="number"
+                            placeholder="Enter subject ID">
+
+                </div>
+
+            </div>
+
+
+            <br>
 
             <button
                     class="portal-btn primary"
-                    onclick="loadStudents()">
+                    onclick="loadMarks()">
 
-                Load Students
+                Load Marks
 
             </button>
 
@@ -190,36 +272,31 @@
 
                     <tr>
 
-                        <th>
-                            Student
-                        </th>
-
-                        <th>
-                            Roll No.
-                        </th>
-
-                        <th>
-                            Status
-                        </th>
+                        <th>Student</th>
+                        <th>Exam Type</th>
+                        <th>Obtained</th>
+                        <th>Total</th>
 
                     </tr>
 
                     </thead>
 
-                    <tbody id="rows"></tbody>
+
+                    <tbody id="marksRows">
+
+                    <tr>
+
+                        <td colspan="4">
+                            Enter Subject ID and load marks.
+                        </td>
+
+                    </tr>
+
+                    </tbody>
 
                 </table>
 
             </div>
-
-
-            <button
-                    class="portal-btn primary"
-                    onclick="save()">
-
-                Save Attendance
-
-            </button>
 
         </div>
 
@@ -230,69 +307,126 @@
 
 <script src="/js/admin.js"></script>
 
-
 <script>
 
-    let students = [];
+    async function saveMarks() {
+
+        const studentId =
+            document.getElementById("studentId")
+                .value.trim();
+
+        const subjectId =
+            document.getElementById("subjectId")
+                .value.trim();
+
+        const examType =
+            document.getElementById("examType")
+                .value.trim();
+
+        const obtainedMarks =
+            document.getElementById("obtainedMarks")
+                .value.trim();
+
+        const totalMarks =
+            document.getElementById("totalMarks")
+                .value.trim();
 
 
-    async function loadStudents() {
+        if (
+            !studentId ||
+            !subjectId ||
+            !examType ||
+            !obtainedMarks ||
+            !totalMarks
+        ) {
+
+            portalToast(
+                "Please fill all fields."
+            );
+
+            return;
+        }
+
+
+        if (
+            Number(obtainedMarks) < 0 ||
+            Number(totalMarks) <= 0 ||
+            Number(obtainedMarks) > Number(totalMarks)
+        ) {
+
+            portalToast(
+                "Please enter valid marks."
+            );
+
+            return;
+        }
+
 
         try {
 
-            students =
-                portalArray(
-                    await portalApi(
-                        '/api/faculty/students'
-                    )
-                );
+            const params =
+                new URLSearchParams();
+
+            params.append(
+                "studentId",
+                studentId
+            );
+
+            params.append(
+                "subjectId",
+                subjectId
+            );
+
+            params.append(
+                "examType",
+                examType
+            );
+
+            params.append(
+                "obtainedMarks",
+                obtainedMarks
+            );
+
+            params.append(
+                "totalMarks",
+                totalMarks
+            );
+
+
+            await portalApi(
+                "/api/faculty/marks",
+                {
+                    method: "POST",
+                    body: params
+                }
+            );
+
+
+            portalToast(
+                "Marks saved successfully."
+            );
 
 
             document.getElementById(
-                'rows'
-            ).innerHTML =
+                "studentId"
+            ).value = "";
 
-                students.map(
-                    (x,i) => `
+            document.getElementById(
+                "examType"
+            ).value = "";
 
-                <tr>
+            document.getElementById(
+                "obtainedMarks"
+            ).value = "";
 
-                    <td>
-                        ${pEsc(
-                        x.name || "--"
-                    )}
-                    </td>
+            document.getElementById(
+                "totalMarks"
+            ).value = "";
 
-                    <td>
-                        ${pEsc(
-                        x.rollNo || "--"
-                    )}
-                    </td>
 
-                    <td>
+        } catch (e) {
 
-                        <select
-                            class="portal-input"
-                            id="att_${i}">
-
-                            <option value="PRESENT">
-                                Present
-                            </option>
-
-                            <option value="ABSENT">
-                                Absent
-                            </option>
-
-                        </select>
-
-                    </td>
-
-                </tr>
-
-            `
-                ).join('');
-
-        } catch(e) {
+            console.error(e);
 
             portalToast(e.message);
 
@@ -301,68 +435,97 @@
     }
 
 
-    async function save() {
+    async function loadMarks() {
 
-        let subjectId =
+        const subjectId =
             document.getElementById(
-                'subjectId'
-            ).value;
+                "viewSubjectId"
+            ).value.trim();
 
-
-        let date =
+        const rows =
             document.getElementById(
-                'date'
-            ).value;
+                "marksRows"
+            );
 
 
-        if (!subjectId || !date) {
+        if (!subjectId) {
 
             portalToast(
-                'Enter subject and date'
+                "Please enter Subject ID."
             );
 
             return;
-
         }
-
-
-        let records =
-            students.map(
-                (x,i) => ({
-
-                    studentId: x.id,
-
-                    subjectId: subjectId,
-
-                    date: date,
-
-                    status:
-                    document.getElementById(
-                        'att_' + i
-                    ).value
-
-                })
-            );
 
 
         try {
 
-            await portalApi(
-                '/api/faculty/attendance',
-                {
-                    method: 'POST',
+            const response =
+                await portalApi(
+                    "/api/faculty/marks/" +
+                    subjectId
+                );
 
-                    body:
-                        JSON.stringify(records)
-                }
-            );
+            const marks =
+                portalArray(response);
 
 
-            portalToast(
-                'Attendance saved'
-            );
+            if (!marks.length) {
 
-        } catch(e) {
+                rows.innerHTML = `
+                <tr>
+                    <td colspan="4">
+                        No marks found.
+                    </td>
+                </tr>
+            `;
+
+                return;
+            }
+
+
+            rows.innerHTML = marks.map(
+                mark => `
+
+            <tr>
+
+                <td>
+                    ${pEsc(
+                    mark.student?.fullName ||
+                    mark.student?.name ||
+                    mark.student?.id ||
+                    "--"
+                )}
+                </td>
+
+                <td>
+                    ${pEsc(
+                    mark.examType ||
+                    "--"
+                )}
+                </td>
+
+                <td>
+                    ${pEsc(
+                    mark.obtainedMarks ??
+                    "--"
+                )}
+                </td>
+
+                <td>
+                    ${pEsc(
+                    mark.totalMarks ??
+                    "--"
+                )}
+                </td>
+
+            </tr>
+
+        `).join("");
+
+        } catch (e) {
+
+            console.error(e);
 
             portalToast(e.message);
 
@@ -373,4 +536,5 @@
 </script>
 
 </body>
+
 </html>

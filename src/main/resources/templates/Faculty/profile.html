@@ -223,70 +223,63 @@
 </div>
 
 
-<script src="/js/admin.js"></script>
-
-
 <script>
 
     async function load() {
 
         try {
 
-            let x =
-                await portalApi(
-                    '/api/faculty/profile'
-                );
+            // Get logged-in user
+            const user = await portalApi('/api/auth/me');
 
+            // Make sure logged-in user is Faculty
+            if (user.role !== 'FACULTY') {
+                portalToast('You are not logged in as Faculty.');
+                return;
+            }
 
-            let name =
-                x.name ||
+            // Get Faculty ID from logged-in User
+            const facultyId = user.id;
+
+            // Get Faculty profile
+            const x = await portalApi(
+                '/api/faculty/profile/' + facultyId
+            );
+
+            const name =
                 x.fullName ||
+                x.name ||
                 'Faculty';
 
+            document.getElementById('name').textContent =
+                name;
 
-            document.getElementById(
-                'name'
-            ).textContent = name;
-
-
-            document.getElementById(
-                'email'
-            ).textContent =
+            document.getElementById('email').textContent =
                 x.email || '--';
 
+            document.getElementById('pname').value =
+                name;
 
-            document.getElementById(
-                'pname'
-            ).value = name;
-
-
-            document.getElementById(
-                'pemail'
-            ).value =
+            document.getElementById('pemail').value =
                 x.email || '';
 
-
-            document.getElementById(
-                'department'
-            ).value =
-                x.department || '';
-
-
-            document.getElementById(
-                'employeeId'
-            ).value =
-                x.employeeId ||
-                x.id ||
+            document.getElementById('department').value =
+                x.department?.name ||
+                x.department ||
                 '';
 
-        } catch(e) {
+            document.getElementById('employeeId').value =
+                x.id || '';
+
+        } catch (e) {
+
+            console.error(e);
 
             portalToast(e.message);
 
         }
 
     }
-
 
     load();
 

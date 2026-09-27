@@ -6,9 +6,9 @@
     <meta charset="UTF-8">
 
     <meta name="viewport"
-          content="width=device-width,initial-scale=1.0">
+          content="width=device-width, initial-scale=1.0">
 
-    <title>Student Portal | Dashboard</title>
+    <title>Student Portal | Students</title>
 
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/admin-faculty.css">
@@ -22,61 +22,46 @@
     <aside class="sidebar">
 
         <div class="logo">
-
             <h2>Student Portal</h2>
-
             <span>College Dashboard</span>
-
         </div>
-
 
         <nav class="sidebar-nav">
 
-            <a href="/faculty/dashboard"
-               class="nav-item active">
+            <a href="/faculty/dashboard" class="nav-item">
                 Dashboard
             </a>
 
-            <a href="/faculty/profile"
-               class="nav-item">
+            <a href="/faculty/profile" class="nav-item">
                 Profile
             </a>
 
-            <a href="/faculty/students"
-               class="nav-item">
+            <a href="/faculty/students" class="nav-item active">
                 Students
             </a>
 
-            <a href="/faculty/subjects"
-               class="nav-item">
+            <a href="/faculty/subjects" class="nav-item">
                 Subjects
             </a>
 
-            <a href="/faculty/assignments"
-               class="nav-item">
+            <a href="/faculty/assignments" class="nav-item">
                 Assignments
             </a>
 
-            <a href="/faculty/attendance"
-               class="nav-item">
+            <a href="/faculty/attendance" class="nav-item">
                 Attendance
             </a>
 
-            <a href="/faculty/marks"
-               class="nav-item">
+            <a href="/faculty/marks" class="nav-item">
                 Marks
             </a>
 
         </nav>
 
-
         <div class="sidebar-bottom">
 
-            <a href="/login"
-               class="nav-item logout">
-
+            <a href="/login" class="nav-item logout">
                 Logout
-
             </a>
 
         </div>
@@ -94,10 +79,10 @@
                     FACULTY MODULE
                 </p>
 
-                <h1>Dashboard</h1>
+                <h1>Students</h1>
 
                 <p class="subtitle">
-                    College Dashboard
+                    View all students
                 </p>
 
             </div>
@@ -110,11 +95,8 @@
                 </div>
 
                 <div>
-
                     <strong>Faculty</strong>
-
                     <span>Faculty</span>
-
                 </div>
 
             </div>
@@ -122,234 +104,70 @@
         </header>
 
 
-        <section class="portal-stat-grid">
+        <div class="dashboard-card">
 
-            <div class="portal-stat-card">
+            <div class="card-header">
 
-                <span>Students</span>
+                <div>
 
-                <h2 id="students">
-                    --
-                </h2>
+                    <h2>Students</h2>
 
-                <small>
-                    Current records
-                </small>
-
-            </div>
-
-
-            <div class="portal-stat-card">
-
-                <span>Subjects</span>
-
-                <h2 id="subjects">
-                    --
-                </h2>
-
-                <small>
-                    Current records
-                </small>
-
-            </div>
-
-
-            <div class="portal-stat-card">
-
-                <span>Assignments</span>
-
-                <h2 id="assignments">
-                    --
-                </h2>
-
-                <small>
-                    Current records
-                </small>
-
-            </div>
-
-
-            <div class="portal-stat-card">
-
-                <span>Attendance</span>
-
-                <h2 id="attendance">
-                    --
-                </h2>
-
-                <small>
-                    Current records
-                </small>
-
-            </div>
-
-        </section>
-
-
-        <section class="content-grid">
-
-            <div class="dashboard-card">
-
-                <div class="card-header">
-
-                    <div>
-
-                        <h2>
-                            Teaching Overview
-                        </h2>
-
-                        <p>
-                            Your current faculty records
-                        </p>
-
-                    </div>
+                    <p>
+                        Students registered in the portal.
+                    </p>
 
                 </div>
 
+                <button
+                        class="portal-btn primary"
+                        onclick="loadStudents()">
 
-                <div class="portal-list">
+                    Refresh
 
-                    <div class="portal-list-item">
-
-                        <span>
-                            Students
-                        </span>
-
-                        <strong id="aStudents">
-                            --
-                        </strong>
-
-                    </div>
-
-
-                    <div class="portal-list-item">
-
-                        <span>
-                            Subjects
-                        </span>
-
-                        <strong id="aSubjects">
-                            --
-                        </strong>
-
-                    </div>
-
-
-                    <div class="portal-list-item">
-
-                        <span>
-                            Assignments
-                        </span>
-
-                        <strong id="aAssignments">
-                            --
-                        </strong>
-
-                    </div>
-
-
-                    <div class="portal-list-item">
-
-                        <span>
-                            Attendance
-                        </span>
-
-                        <strong id="aAttendance">
-                            --
-                        </strong>
-
-                    </div>
-
-                </div>
+                </button>
 
             </div>
 
 
-            <div class="dashboard-card">
+            <div class="portal-table-wrap">
 
-                <div class="card-header">
+                <table class="portal-table">
 
-                    <div>
+                    <thead>
 
-                        <h2>
-                            Quick Access
-                        </h2>
+                    <tr>
 
-                        <p>
-                            Faculty actions
-                        </p>
+                        <th>#</th>
 
-                    </div>
+                        <th>Student</th>
 
-                </div>
+                        <th>Roll No.</th>
 
+                        <th>Email</th>
 
-                <div class="quick-links">
+                        <th>Course</th>
 
-                    <a
-                            class="quick-link"
-                            href="/faculty/attendance">
+                    </tr>
 
-                        <span>
-                            Attendance
-                        </span>
+                    </thead>
 
-                        <span>
-                            →
-                        </span>
+                    <tbody id="studentRows">
 
-                    </a>
+                    <tr>
 
+                        <td colspan="5">
+                            Loading students...
+                        </td>
 
-                    <a
-                            class="quick-link"
-                            href="/faculty/marks">
+                    </tr>
 
-                        <span>
-                            Marks
-                        </span>
+                    </tbody>
 
-                        <span>
-                            →
-                        </span>
-
-                    </a>
-
-
-                    <a
-                            class="quick-link"
-                            href="/faculty/assignments">
-
-                        <span>
-                            Assignments
-                        </span>
-
-                        <span>
-                            →
-                        </span>
-
-                    </a>
-
-
-                    <a
-                            class="quick-link"
-                            href="/faculty/students">
-
-                        <span>
-                            Students
-                        </span>
-
-                        <span>
-                            →
-                        </span>
-
-                    </a>
-
-                </div>
+                </table>
 
             </div>
 
-        </section>
+        </div>
 
     </main>
 
@@ -358,48 +176,102 @@
 
 <script src="/js/admin.js"></script>
 
-
 <script>
 
-    async function load() {
+    async function loadStudents() {
 
-        for (
-            const [id,u] of [
-            ['students','/api/faculty/students'],
-            ['subjects','/api/faculty/subjects'],
-            ['assignments','/api/faculty/assignments'],
-            ['attendance','/api/faculty/attendance']
-        ]
-            ) {
+        const rows =
+            document.getElementById("studentRows");
 
-            try {
+        try {
 
-                let n =
-                    portalArray(
-                        await portalApi(u)
-                    ).length;
+            const response =
+                await portalApi("/api/faculty/students");
+
+            const students =
+                portalArray(response);
 
 
-                document.getElementById(
-                    id
-                ).textContent = n;
+            if (!students.length) {
+
+                rows.innerHTML = `
+                <tr>
+                    <td colspan="5">
+                        No students found.
+                    </td>
+                </tr>
+            `;
+
+                return;
+            }
 
 
-                document.getElementById(
-                    'a' +
-                    id[0].toUpperCase() +
-                    id.slice(1)
-                ).textContent = n;
+            rows.innerHTML = students.map(
+                (student, index) => `
 
-            } catch(e) {}
+            <tr>
 
+                <td>
+                    ${index + 1}
+                </td>
+
+                <td>
+                    ${pEsc(
+                    student.fullName ||
+                    student.name ||
+                    "--"
+                )}
+                </td>
+
+                <td>
+                    ${pEsc(
+                    student.rollNo ||
+                    student.rollNumber ||
+                    "--"
+                )}
+                </td>
+
+                <td>
+                    ${pEsc(
+                    student.email ||
+                    "--"
+                )}
+                </td>
+
+                <td>
+                    ${pEsc(
+                    student.course?.name ||
+                    student.courseName ||
+                    "--"
+                )}
+                </td>
+
+            </tr>
+
+        `).join("");
+
+        } catch (e) {
+
+            console.error(e);
+
+            rows.innerHTML = `
+            <tr>
+                <td colspan="5">
+                    Unable to load students.
+                </td>
+            </tr>
+        `;
+
+            portalToast(e.message);
         }
 
     }
 
-    load();
+
+    loadStudents();
 
 </script>
 
 </body>
+
 </html>
