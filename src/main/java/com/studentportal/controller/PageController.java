@@ -48,30 +48,6 @@ public class PageController {
         return "student/assignments";
     }
 
-    @GetMapping("/student/quiz")
-    public String quiz() {
-        return "student/quiz";
-    }
-
-    @GetMapping("/student/quizzes")
-    public String studentQuizzes() {
-        return "student/quizzes";
-    }
-
-    @GetMapping("/student/quiz/instructions")
-    public String quizInstructions() {
-        return "student/quiz-instructions";
-    }
-
-    @GetMapping("/student/quiz/attempt")
-    public String attemptQuiz() {
-        return "student/attempt-quiz";
-    }
-
-    @GetMapping("/student/quiz/result")
-    public String quizResult() {
-        return "student/quiz-result";
-    }
 
 
     // ================= FACULTY =================
