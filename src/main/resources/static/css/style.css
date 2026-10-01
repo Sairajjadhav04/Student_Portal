@@ -1186,3 +1186,50 @@ body:has(.login-container) {
         font-size: 17px;
     }
 }
+/* =========================================
+   REGISTRATION PAGE
+========================================= */
+
+.registration-container {
+    max-width: 500px;
+}
+
+.registration-container select {
+    width: 100%;
+    padding: 13px 14px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border: 1px solid #C8DDE5;
+    border-radius: 8px;
+    background: #F8FBFC;
+    color: #000000;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.25s ease;
+}
+
+.registration-container select:focus {
+    border-color: #35BFC5;
+    background: #FFFFFF;
+    box-shadow: 0 0 0 3px rgba(59, 158, 216, 0.12);
+}
+
+.register-link {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.register-link a {
+    color: #287FAE;
+    font-weight: 600;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+#registerForm button {
+    margin-bottom: 5px;
+}
