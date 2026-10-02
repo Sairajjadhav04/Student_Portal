@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Portal - Registration</title>
+
+    <link rel="stylesheet" href="src/main/resources/Static/css/style.css">
+</head>
+
+<body>
+
+<div class="login-container registration-container">
+
+    <h1>Student Portal</h1>
+    <h2>Create Account</h2>
+
+    <form id="registerForm">
+
+        <!-- Username -->
+        <label for="username">Username</label>
+        <input
+                type="text"
+                id="username"
+                placeholder="Enter username"
+                required
+        >
+
+        <!-- Full Name -->
+        <label for="fullName">Full Name</label>
+        <input
+                type="text"
+                id="fullName"
+                placeholder="Enter full name"
+                required
+        >
+
+        <!-- Email -->
+        <label for="email">Email</label>
+        <input
+                type="email"
+                id="email"
+                placeholder="Enter email"
+                required
+        >
+
+        <!-- Roll Number -->
+        <label for="rollNumber">Roll Number</label>
+        <input
+                type="text"
+                id="rollNumber"
+                placeholder="Enter roll number"
+                required
+        >
+
+        <!-- Department -->
+        <label for="departmentId">Department</label>
+
+        <select id="departmentId" required>
+
+            <option value="">Select Department</option>
+
+            <option value="1">
+                BE AI & DS
+            </option>
+
+            <option value="2">
+                BE Computer Engineering
+            </option>
+
+            <option value="3">
+                BE Mechanical Engineering
+            </option>
+
+            <option value="4">
+                BE Electronics and Telecommunication Engineering
+            </option>
+
+            <option value="5">
+                BE Information Technology
+            </option>
+
+        </select>
+
+
+        <!-- Semester -->
+        <label for="semester">Semester</label>
+
+        <select id="semester" required>
+
+            <option value="">Select Semester</option>
+
+            <option value="1">Semester 1</option>
+            <option value="2">Semester 2</option>
+            <option value="3">Semester 3</option>
+            <option value="4">Semester 4</option>
+            <option value="5">Semester 5</option>
+            <option value="6">Semester 6</option>
+            <option value="7">Semester 7</option>
+            <option value="8">Semester 8</option>
+
+        </select>
+
+
+        <!-- Password -->
+        <label for="password">Password</label>
+
+        <input
+                type="password"
+                id="password"
+                placeholder="Enter password"
+                required
+        >
+
+
+        <!-- Confirm Password -->
+        <label for="confirmPassword">Confirm Password</label>
+
+        <input
+                type="password"
+                id="confirmPassword"
+                placeholder="Confirm password"
+                required
+        >
+
+
+        <button type="submit">
+            Register
+        </button>
+
+    </form>
+
+
+    <p id="message"></p>
+
+
+    <p class="register-link">
+
+        Already have an account?
+
+        <a href="/login">
+            Login here
+        </a>
+
+    </p>
+
+</div>
+
+
+<script>
+
+    const registerForm =
+        document.getElementById("registerForm");
+
+    const message =
+        document.getElementById("message");
+
+
+    registerForm.addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const username =
+                document.getElementById("username")
+                    .value.trim();
+
+
+            const fullName =
+                document.getElementById("fullName")
+                    .value.trim();
+
+
+            const email =
+                document.getElementById("email")
+                    .value.trim();
+
+
+            const rollNumber =
+                document.getElementById("rollNumber")
+                    .value.trim();
+
+
+            const departmentId =
+                document.getElementById("departmentId")
+                    .value;
+
+
+            const semester =
+                document.getElementById("semester")
+                    .value;
+
+
+            const password =
+                document.getElementById("password")
+                    .value;
+
+
+            const confirmPassword =
+                document.getElementById("confirmPassword")
+                    .value;
+
+
+            /*
+             * Check password
+             */
+
+            if (password !== confirmPassword) {
+
+                message.style.color = "#D64545";
+
+                message.textContent =
+                    "Passwords do not match.";
+
+                return;
+            }
+
+
+            /*
+             * Registration data
+             */
+
+            const registrationData = {
+
+                username: username,
+
+                password: password,
+
+                email: email,
+
+                fullName: fullName,
+
+                rollNumber: rollNumber,
+
+                role: "STUDENT",
+
+                departmentId: Number(departmentId),
+
+                courseId: null,
+
+                semester: Number(semester)
+
+            };
+
+
+            try {
+
+                const response = await fetch(
+                    "/api/auth/register",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:
+                            JSON.stringify(
+                                registrationData
+                            )
+                    }
+                );
+
+
+                const data =
+                    await response.json();
+
+
+                if (response.ok) {
+
+                    message.style.color =
+                        "#15803D";
+
+                    message.textContent =
+                        "Registration successful! Redirecting to login...";
+
+
+                    setTimeout(function() {
+
+                        window.location.href =
+                            "/login";
+
+                    }, 1500);
+
+                }
+
+                else {
+
+                    message.style.color =
+                        "#D64545";
+
+                    message.textContent =
+                        data.message ||
+                        data.error ||
+                        "Registration failed.";
+
+                }
+
+            }
+
+            catch (error) {
+
+                console.error(error);
+
+                message.style.color =
+                    "#D64545";
+
+                message.textContent =
+                    "Unable to connect to the server.";
+
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+</html>
