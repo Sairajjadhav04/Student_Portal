@@ -48,62 +48,173 @@
 
 <script>
 
-  document.getElementById("loginForm").addEventListener("submit", async function(event) {
+  document
+          .getElementById("loginForm")
+          .addEventListener(
+                  "submit",
 
-    event.preventDefault();
+                  async function(event) {
 
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-    const message = document.getElementById("message");
+                    event.preventDefault();
 
-    try {
 
-      const response = await fetch("http://localhost:8081/api/auth/login", {
+                    const username =
+                            document.getElementById(
+                                    "username"
+                            ).value;
 
-        method: "POST",
 
-        headers: {
-          "Content-Type": "application/json"
-        },
+                    const password =
+                            document.getElementById(
+                                    "password"
+                            ).value;
 
-        body: JSON.stringify({
-          username: username,
-          password: password
-        })
 
-      });
+                    const message =
+                            document.getElementById(
+                                    "message"
+                            );
 
-      const data = await response.json();
 
-      if (response.ok) {
+                    try {
 
-        // Save JWT token
-        localStorage.setItem("token", data.token);
+                      const response =
+                              await fetch(
+                                      "/api/auth/login",
+                                      {
 
-        message.textContent = "Login successful!";
+                                        method: "POST",
 
-        // Go to student dashboard
-        window.location.href = "/student/dashboard";
+                                        headers: {
 
-      } else {
+                                          "Content-Type":
+                                                  "application/json"
 
-        message.textContent =
-                data.message || "Invalid username or password.";
+                                        },
 
-      }
+                                        body:
+                                                JSON.stringify({
 
-    } catch (error) {
+                                                  username:
+                                                  username,
 
-      console.error(error);
+                                                  password:
+                                                  password
 
-      message.textContent =
-              "Unable to connect to the server.";
+                                                })
 
-    }
+                                      }
+                              );
 
-  });
+
+                      const data =
+                              await response.json();
+
+
+
+                      if (response.ok) {
+
+
+                        // Save JWT
+                        localStorage.setItem(
+                                "token",
+                                data.token
+                        );
+
+
+                        // Save role
+                        localStorage.setItem(
+                                "role",
+                                data.role
+                        );
+
+
+                        message.style.color =
+                                "#15803D";
+
+
+                        message.textContent =
+                                "Login successful!";
+
+
+                        // =========================
+                        // ROLE-WISE REDIRECTION
+                        // =========================
+
+                        if (
+                                data.role === "STUDENT"
+                        ) {
+
+                          window.location.href =
+                                  "/student/dashboard";
+
+                        }
+
+
+                        else if (
+                                data.role === "FACULTY"
+                        ) {
+
+                          window.location.href =
+                                  "/faculty/dashboard";
+
+                        }
+
+
+                        else if (
+                                data.role === "ADMIN"
+                        ) {
+
+                          window.location.href =
+                                  "/admin/dashboard";
+
+                        }
+
+
+                        else {
+
+                          message.textContent =
+                                  "Invalid user role.";
+
+                        }
+
+                      }
+
+
+                      else {
+
+                        message.style.color =
+                                "#D64545";
+
+
+                        message.textContent =
+                                data.message ||
+                                data.error ||
+                                "Invalid username or password.";
+
+                      }
+
+
+                    }
+
+
+                    catch (error) {
+
+                      console.error(error);
+
+
+                      message.style.color =
+                              "#D64545";
+
+
+                      message.textContent =
+                              "Unable to connect to the server.";
+
+                    }
+
+                  }
+          );
 
 </script>
-
 </body>
 </html>

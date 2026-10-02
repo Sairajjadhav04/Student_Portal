@@ -1,25 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Student Portal - Registration</title>
 
-    <link rel="stylesheet" href="src/main/resources/Static/css/style.css">
+    <link rel="stylesheet"
+          href="/css/style.css">
+
 </head>
+
 
 <body>
 
+
 <div class="login-container registration-container">
 
+
     <h1>Student Portal</h1>
-    <h2>Create Account</h2>
+
+    <h2>Create Student Account</h2>
+
 
     <form id="registerForm">
 
-        <!-- Username -->
-        <label for="username">Username</label>
+
+        <!-- USERNAME -->
+
+        <label for="username">
+            Username
+        </label>
+
         <input
                 type="text"
                 id="username"
@@ -27,8 +43,14 @@
                 required
         >
 
-        <!-- Full Name -->
-        <label for="fullName">Full Name</label>
+
+
+        <!-- FULL NAME -->
+
+        <label for="fullName">
+            Full Name
+        </label>
+
         <input
                 type="text"
                 id="fullName"
@@ -36,8 +58,14 @@
                 required
         >
 
-        <!-- Email -->
-        <label for="email">Email</label>
+
+
+        <!-- EMAIL -->
+
+        <label for="email">
+            Email
+        </label>
+
         <input
                 type="email"
                 id="email"
@@ -45,8 +73,14 @@
                 required
         >
 
-        <!-- Roll Number -->
-        <label for="rollNumber">Roll Number</label>
+
+
+        <!-- ROLL NUMBER -->
+
+        <label for="rollNumber">
+            Roll Number
+        </label>
+
         <input
                 type="text"
                 id="rollNumber"
@@ -54,12 +88,19 @@
                 required
         >
 
-        <!-- Department -->
-        <label for="departmentId">Department</label>
+
+
+        <!-- DEPARTMENT -->
+
+        <label for="departmentId">
+            Department
+        </label>
 
         <select id="departmentId" required>
 
-            <option value="">Select Department</option>
+            <option value="">
+                Select Department
+            </option>
 
             <option value="1">
                 BE AI & DS
@@ -84,27 +125,60 @@
         </select>
 
 
-        <!-- Semester -->
-        <label for="semester">Semester</label>
+
+        <!-- SEMESTER -->
+
+        <label for="semester">
+            Semester
+        </label>
 
         <select id="semester" required>
 
-            <option value="">Select Semester</option>
+            <option value="">
+                Select Semester
+            </option>
 
-            <option value="1">Semester 1</option>
-            <option value="2">Semester 2</option>
-            <option value="3">Semester 3</option>
-            <option value="4">Semester 4</option>
-            <option value="5">Semester 5</option>
-            <option value="6">Semester 6</option>
-            <option value="7">Semester 7</option>
-            <option value="8">Semester 8</option>
+            <option value="1">
+                Semester 1
+            </option>
+
+            <option value="2">
+                Semester 2
+            </option>
+
+            <option value="3">
+                Semester 3
+            </option>
+
+            <option value="4">
+                Semester 4
+            </option>
+
+            <option value="5">
+                Semester 5
+            </option>
+
+            <option value="6">
+                Semester 6
+            </option>
+
+            <option value="7">
+                Semester 7
+            </option>
+
+            <option value="8">
+                Semester 8
+            </option>
 
         </select>
 
 
-        <!-- Password -->
-        <label for="password">Password</label>
+
+        <!-- PASSWORD -->
+
+        <label for="password">
+            Password
+        </label>
 
         <input
                 type="password"
@@ -114,8 +188,12 @@
         >
 
 
-        <!-- Confirm Password -->
-        <label for="confirmPassword">Confirm Password</label>
+
+        <!-- CONFIRM PASSWORD -->
+
+        <label for="confirmPassword">
+            Confirm Password
+        </label>
 
         <input
                 type="password"
@@ -125,14 +203,18 @@
         >
 
 
+
         <button type="submit">
             Register
         </button>
 
+
     </form>
 
 
+
     <p id="message"></p>
+
 
 
     <p class="register-link">
@@ -145,72 +227,100 @@
 
     </p>
 
+
 </div>
+
 
 
 <script>
 
+
     const registerForm =
-        document.getElementById("registerForm");
+        document.getElementById(
+            "registerForm"
+        );
+
 
     const message =
-        document.getElementById("message");
+        document.getElementById(
+            "message"
+        );
+
 
 
     registerForm.addEventListener(
         "submit",
+
         async function(event) {
 
             event.preventDefault();
 
 
+
             const username =
-                document.getElementById("username")
-                    .value.trim();
+                document.getElementById(
+                    "username"
+                ).value.trim();
+
 
 
             const fullName =
-                document.getElementById("fullName")
-                    .value.trim();
+                document.getElementById(
+                    "fullName"
+                ).value.trim();
+
 
 
             const email =
-                document.getElementById("email")
-                    .value.trim();
+                document.getElementById(
+                    "email"
+                ).value.trim();
+
 
 
             const rollNumber =
-                document.getElementById("rollNumber")
-                    .value.trim();
+                document.getElementById(
+                    "rollNumber"
+                ).value.trim();
+
 
 
             const departmentId =
-                document.getElementById("departmentId")
-                    .value;
+                document.getElementById(
+                    "departmentId"
+                ).value;
+
 
 
             const semester =
-                document.getElementById("semester")
-                    .value;
+                document.getElementById(
+                    "semester"
+                ).value;
+
 
 
             const password =
-                document.getElementById("password")
-                    .value;
+                document.getElementById(
+                    "password"
+                ).value;
+
 
 
             const confirmPassword =
-                document.getElementById("confirmPassword")
-                    .value;
+                document.getElementById(
+                    "confirmPassword"
+                ).value;
 
 
-            /*
-             * Check password
-             */
+
+            // =========================
+            // PASSWORD CHECK
+            // =========================
 
             if (password !== confirmPassword) {
 
-                message.style.color = "#D64545";
+                message.style.color =
+                    "#D64545";
 
                 message.textContent =
                     "Passwords do not match.";
@@ -219,9 +329,10 @@
             }
 
 
-            /*
-             * Registration data
-             */
+
+            // =========================
+            // REGISTRATION DATA
+            // =========================
 
             const registrationData = {
 
@@ -237,61 +348,87 @@
 
                 role: "STUDENT",
 
-                departmentId: Number(departmentId),
+                departmentId:
+                    Number(departmentId),
 
                 courseId: null,
 
-                semester: Number(semester)
+                semester:
+                    Number(semester)
 
             };
 
 
+
             try {
 
-                const response = await fetch(
-                    "/api/auth/register",
-                    {
-                        method: "POST",
 
-                        headers: {
-                            "Content-Type":
-                                "application/json"
-                        },
+                const response =
+                    await fetch(
+                        "/api/auth/register",
+                        {
 
-                        body:
-                            JSON.stringify(
-                                registrationData
-                            )
-                    }
-                );
+                            method: "POST",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+                            body:
+                                JSON.stringify(
+                                    registrationData
+                                )
+
+                        }
+                    );
+
 
 
                 const data =
                     await response.json();
 
 
+
+                // =========================
+                // SUCCESS
+                // =========================
+
                 if (response.ok) {
 
                     message.style.color =
                         "#15803D";
 
+
                     message.textContent =
                         "Registration successful! Redirecting to login...";
 
 
-                    setTimeout(function() {
+                    setTimeout(
+                        function() {
 
-                        window.location.href =
-                            "/login";
+                            window.location.href =
+                                "/login";
 
-                    }, 1500);
+                        },
+                        1500
+                    );
 
                 }
+
+
+
+                    // =========================
+                    // ERROR
+                // =========================
 
                 else {
 
                     message.style.color =
                         "#D64545";
+
 
                     message.textContent =
                         data.message ||
@@ -300,24 +437,19 @@
 
                 }
 
+
             }
 
             catch (error) {
 
                 console.error(error);
-
                 message.style.color =
                     "#D64545";
-
                 message.textContent =
                     "Unable to connect to the server.";
-
             }
-
         }
     );
-
 </script>
-
 </body>
 </html>
